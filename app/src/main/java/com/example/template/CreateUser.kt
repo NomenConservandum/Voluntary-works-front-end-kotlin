@@ -17,10 +17,12 @@ class CreateUser : AppCompatActivity() {
 	private lateinit var viewModel: MainViewModel
 
 	// 'in' prefix for 'input'
-	lateinit var inemail: EditText
-	lateinit var inpassword: EditText
-	lateinit var infirstname: EditText
-	lateinit var insecondname: EditText
+	lateinit var inEmail: EditText
+	lateinit var inPassword: EditText
+	lateinit var inFirstname: EditText
+	lateinit var inSecondname: EditText
+	lateinit var inPatronymic: EditText
+	lateinit var inTelegramURL: EditText
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		val repository = Repository()
@@ -30,16 +32,19 @@ class CreateUser : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_user)
 
-		inemail = findViewById(R.id.create_email)
-		inpassword = findViewById(R.id.create_password)
-		infirstname = findViewById(R.id.create_name)
-		insecondname = findViewById(R.id.create_surname)
+		inEmail = findViewById(R.id.create_email)
+		inPassword = findViewById(R.id.create_password)
+		inFirstname = findViewById(R.id.create_name)
+		inSecondname = findViewById(R.id.create_surname)
+		inPatronymic = findViewById(R.id.create_patronymic)
+		inTelegramURL = findViewById(R.id.create_telegram)
     }
 	fun create(view: View?) {
-		if (removespaces(inemail.text.toString()) == "" ||
-			removespaces(inpassword.text.toString()) == "" ||
-			removespaces(infirstname.text.toString()) == "" ||
-			removespaces(insecondname.text.toString()) == "") {
+		if (removespaces(inEmail.text.toString()) == "" ||
+			removespaces(inPassword.text.toString()) == "" ||
+			removespaces(inFirstname.text.toString()) == "" ||
+			removespaces(inPatronymic.text.toString()) == "" ||
+			removespaces(inTelegramURL.text.toString()) == "") {
 			Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
 			return
 		}
@@ -50,10 +55,12 @@ class CreateUser : AppCompatActivity() {
 
 		// server API request
 		viewModel.create(
-			removespaces(inemail.text.toString()),
-			removespaces(inpassword.text.toString()),
-			removespaces(infirstname.text.toString()),
-			removespaces(insecondname.text.toString())
+			removespaces(inEmail.text.toString()),
+			removespaces(inPassword.text.toString()),
+			removespaces(inFirstname.text.toString()),
+			removespaces(inSecondname.text.toString()),
+			removespaces(inPatronymic.text.toString()),
+			removespaces(inTelegramURL.text.toString()),
 		)
 		viewModel.myErrorCodeResponse.observe(this, Observer {
 				code ->

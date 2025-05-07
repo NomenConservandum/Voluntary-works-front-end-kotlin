@@ -20,71 +20,24 @@ class MainViewModel(private val repository: Repository): ViewModel() {
     val myUnitResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
     val myTokenResponse: MutableLiveData<Response<TokenResponseClass?>> = MutableLiveData()
 	val myUserResponse: MutableLiveData<User> = MutableLiveData()
-    /*
-    fun getPosts() {
-        viewModelScope.launch {
-            val response = repository.getPosts()
-            myResponse_posts.value = response
-        }
-    }
-     */
-    /*
-    fun getDevs(context: Context) {
-        try {
-            viewModelScope.launch {
-                val response = repository.getDevs()
-                response.body()?.let { myResponse_users.addAll(it) }// = response
-            }
-        } catch (e: HttpException) {
-            Toast.makeText(context, "Try again.", Toast.LENGTH_SHORT).show()
-        }
-    }
-    LEGACY
-     */
+
     fun register(
         email: String,
         password: String,
         firstname: String,
-        secondname: String
+        secondname: String,
+        patronymic: String,
+		telegramUrl: String
     ) {
         viewModelScope.launch {
-            val response = repository.register(email, password, firstname, secondname)
+			val name = firstname.plus(' '.plus(secondname).plus(' '.plus(patronymic)))
+            val response = repository.register(email, password, name, telegramUrl)
             if (response.body() != null)
                 myTokenResponse.value = response
             else
                 myErrorCodeResponse.value = response.code()
         }
     }
-    /*
-    fun devregister(
-        email: String,
-        password: String,
-        fullname: String,
-        role: String,
-        organizationid: Int
-    ) {
-        viewModelScope.launch {
-            val response = repository.devregister(email, password, fullname, role, organizationid)
-            myStringResponse.value = response
-        }
-    }
-    LEGACY
-     */
-    /*
-    fun delete(requesteduser: Users) {
-        viewModelScope.launch {
-            val response = repository.delete(
-                com.example.template.functions.data_manipulation.deletionrequesteduser.email,
-                com.example.template.functions.data_manipulation.deletionrequesteduser.password_hash,
-                com.example.template.functions.data_manipulation.deletionrequesteduser.fullname,
-                com.example.template.functions.data_manipulation.deletionrequesteduser.role,
-                com.example.template.functions.data_manipulation.deletionrequesteduser.organization_id
-            )
-            myStringResponse.value = response
-        }
-    }
-    LEGACY
-     */
     fun login(
         email: String,
         password: String
@@ -139,7 +92,6 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 			Log.i("getUserByEmail", email)
 			if (response.code() == 200) {
 				myUserResponse.value = response.body()
-				// myErrorCodeResponse.value = 200
 			} else
 				myErrorCodeResponse.value = response.code()
 		}
@@ -148,10 +100,13 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 		email: String,
 		password: String,
 		firstname: String,
-		secondname: String
+		secondname: String,
+		patronymic: String,
+		telegramUrl: String
 	) {
 		viewModelScope.launch {
-			val response = repository.create(email, password, firstname, secondname)
+			val name = firstname.plus(' '.plus(secondname).plus(' '.plus(patronymic)))
+			val response = repository.create(email, password, name, telegramUrl)
 			if (response.code() == 201) {
 				myString.value = "SUCCESS"
 			} else
@@ -162,7 +117,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 		viewModelScope.launch {
 			val response = repository.edit(user, oldEmail)
 			if (response.code() == 201) {
-				myString.value = "SUCCESS" // response.body()
+				myString.value = "SUCCESS"
 			} else
 				myErrorCodeResponse.value = response.code()
 		}
@@ -176,13 +131,4 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 				myErrorCodeResponse.value = response.code()
 		}
 	}
-    /*
-    fun getRole() {
-        viewModelScope.launch {
-            val response = repository.getRole()
-            myStringResponse.value = response
-        }
-    }
-    LEGACY
-     */
 }

@@ -16,10 +16,9 @@
 		android:inputType="text"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.497"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.26" />
+		app:layout_constraintVertical_bias="0.3" />
 
 	<Button
 		android:id="@+id/create_button"
@@ -29,7 +28,6 @@
 		android:text="@string/create"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.488"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/create_password"
 		app:layout_constraintVertical_bias="0.1" />
@@ -43,10 +41,9 @@
 		android:inputType="textPassword"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.482"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.66" />
+		app:layout_constraintVertical_bias="0.7" />
 
 	<EditText
 		android:id="@+id/create_email"
@@ -57,10 +54,9 @@
 		android:inputType="textEmailAddress"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.482"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.559" />
+		app:layout_constraintVertical_bias="0.6" />
 
 	<EditText
 		android:id="@+id/create_patronymic"
@@ -71,10 +67,9 @@
 		android:inputType="text"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.497"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.46" />
+		app:layout_constraintVertical_bias="0.4" />
 
 	<EditText
 		android:id="@+id/create_name"
@@ -88,5 +83,18 @@
 		app:layout_constraintHorizontal_bias="0.497"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.36" />
+		app:layout_constraintVertical_bias="0.2" />
+
+	<EditText
+		android:id="@+id/create_telegram"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:ems="10"
+		android:hint="@string/prompt_telegram_tag"
+		android:inputType="text"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

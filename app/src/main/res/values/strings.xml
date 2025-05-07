@@ -11,6 +11,7 @@
     <string name="prompt_surname">Surname</string>
     <string name="prompt_name">Name</string>
     <string name="prompt_patronymic">Patronymic (if available)</string>
+    <string name="prompt_telegram_tag">Your Telegram Tag</string>
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

@@ -1,2 +1,3 @@
-/app/src/main/java/com/example/template/utils/Constants.kt
-/.gradle/
+app/src/main/java/com/example/template/utils/Constants.kt
+.gradle/
+app/build/

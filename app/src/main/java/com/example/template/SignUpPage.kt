@@ -19,31 +19,36 @@ import com.example.template.functions.navigation.*
 class SignUpPage : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     // 'in' prefix for 'input'
-    lateinit var inemail: EditText
-    lateinit var inpassword: EditText
-    lateinit var infirstname: EditText
-    lateinit var insecondname: EditText
-
-    val authman = AuthManager()
+    lateinit var inEmail: EditText
+    lateinit var inPassword: EditText
+    lateinit var inFirstname: EditText
+    lateinit var inSecondname: EditText
+    lateinit var inPatronymic: EditText
+    lateinit var inTelegramURL: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_page)
 
-        inemail = findViewById(R.id.email_input)
-        inpassword = findViewById(R.id.password_input)
-        infirstname = findViewById(R.id.surname_input)
-        insecondname = findViewById(R.id.name_input)
+        inEmail = findViewById(R.id.email_input)
+        inPassword = findViewById(R.id.password_input)
+        inFirstname = findViewById(R.id.surname_input)
+        inSecondname = findViewById(R.id.name_input)
+        inPatronymic = findViewById(R.id.patronymic_input)
+        inTelegramURL = findViewById(R.id.telegram_input)
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
     fun signup(view: View?) {
-        if (removespaces(inemail.text.toString()) == "" ||
-            removespaces(inpassword.text.toString()) == "" ||
-            removespaces(infirstname.text.toString()) == "" ||
-            removespaces(insecondname.text.toString()) == "") {
+        if (removespaces(inEmail.text.toString()) == "" ||
+            removespaces(inPassword.text.toString()) == "" ||
+            removespaces(inFirstname.text.toString()) == "" ||
+            removespaces(inSecondname.text.toString()) == "" ||
+            removespaces(inPatronymic.text.toString()) == "" ||
+            removespaces(inTelegramURL.text.toString()) == ""
+            ) {
             Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
             return
         }
@@ -53,15 +58,17 @@ class SignUpPage : AppCompatActivity() {
         }
 
         val authman = AuthManager()
-        authman.writeEmail(inemail.text.toString(), this)
-        globalEmail.value = inemail.text.toString()
+        authman.writeEmail(inEmail.text.toString(), this)
+        globalEmail.value = inEmail.text.toString()
 
         // server API request
         viewModel.register(
-            removespaces(inemail.text.toString()),
-            removespaces(inpassword.text.toString()),
-            removespaces(infirstname.text.toString()),
-            removespaces(insecondname.text.toString())
+            removespaces(inEmail.text.toString()),
+            removespaces(inPassword.text.toString()),
+            removespaces(inFirstname.text.toString()),
+            removespaces(inSecondname.text.toString()),
+            removespaces(inPatronymic.text.toString()),
+            removespaces(inTelegramURL.text.toString())
         )
 
         viewModel.myTokenResponse.observe(this, Observer {
@@ -85,17 +92,6 @@ class SignUpPage : AppCompatActivity() {
                 }
             }
         })
-        /*
-        // should I put it before the response observer?
-        globalToken.observe(this, Observer {
-            // Toast.makeText(this, "Success".plus(globalToken.value), Toast.LENGTH_SHORT).show()
-            if (globalToken.value != "") {
-                navigationhub(this, "CRUD MENU")
-                this.finish()
-            }
-        })
-        */
-
     }
     fun tologinpage(view: View?) {
         tologinpage(this)

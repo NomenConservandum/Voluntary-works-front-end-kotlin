@@ -7,11 +7,14 @@
 
     <string name="welcome_back">С возвращением!</string>
     <string name="welcome">Добро пожаловать!</string>
+
     <string name="prompt_surname">Фамилия</string>
     <string name="prompt_name">Имя</string>
     <string name="prompt_patronymic">Отчество (при наличии)</string>
     <string name="prompt_email">Эл. Почта</string>
     <string name="prompt_password">Пароль</string>
+    <string name="prompt_telegram_tag">Ваш тег Telegram</string>
+
     <string name="signup_hint">Ещё нет аккаунта?</string>
     <string name="signin_hint">Уже есть аккаунт?</string>
     <string name="action_sign_up">Зарегестрироваться</string>

@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.15" />
 
     <EditText
         android:id="@+id/surname_input"
@@ -31,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <EditText
         android:id="@+id/name_input"
@@ -45,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <EditText
         android:id="@+id/patronymic_input"
@@ -126,13 +126,13 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_button" />
 
     <EditText
-        android:id="@+id/role_input"
+        android:id="@+id/telegram_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="temporary role field"
+        android:hint="@string/prompt_telegram_tag"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/welcome_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

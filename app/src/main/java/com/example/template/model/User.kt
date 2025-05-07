@@ -1,26 +1,13 @@
 package com.example.template.model
 
-
-// My version
 data class User (
-    val id: Int,
+    val id: Int, // Is not entered
     val email: String,
     val password: String,
-    val firstName: String, // 'Name' starts with a capital letter just because, lol
-    val secondName: String
+    val Name: String, // ФИО через пробел
+    val TelegramUrl: String,
+    val Role: String, // Is not entered in registration
+    val Group: String, // Is not used at the moment
+    val Points: Int, // Is not entered in registration
+    val FinishedRequests: Int // Is not entered in registration
 )
-
-/*
-// Egor version
-data class Users (
-    var Id: Int,
-    val Email: String,
-    val Password_hash: String,
-    val Fullname: String, // Surname + Name + Patronymic
-    val Role: String,
-    val Organization_id: Int,
-    val Done: Int, // number of participations
-    val Score: Int,
-    val Current: String // What a user participates in right now
-)
- */
