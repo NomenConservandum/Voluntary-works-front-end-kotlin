@@ -34,9 +34,10 @@ fun tocrudmenupage(context: Context) {
 
 fun navigationhub(context: Context, role: String) {
     when (role) {
-        "DEV" -> todevmenupage(context)
+        "Dev" -> todevmenupage(context)
+        "Admin" -> println("no such menu yet")
         "MAIN MENU" -> println("no such menu yet")
-        "CRUD MENU" -> tocrudmenupage(context)
+        "Student" -> tocrudmenupage(context) // temporary
         else -> tosignuppage(context)
     }
 }

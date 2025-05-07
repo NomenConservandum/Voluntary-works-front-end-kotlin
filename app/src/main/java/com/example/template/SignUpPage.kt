@@ -71,7 +71,7 @@ class SignUpPage : AppCompatActivity() {
             removespaces(inTelegramURL.text.toString())
         )
 
-        viewModel.myTokenResponse.observe(this, Observer {
+        viewModel.myDataResponse.observe(this, Observer {
                 response ->
             Toast.makeText(this, R.string.welcome, Toast.LENGTH_SHORT).show()
             globalToken.value = response?.body()!!.data

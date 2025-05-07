@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.template.functions.data_manipulation.globalEmail
+import com.example.template.functions.data_manipulation.globalRole
 import com.example.template.preferencesManager.AuthManager
 import com.example.template.functions.data_manipulation.globalToken
 import com.example.template.functions.navigation.navigationhub
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         try {
             globalToken.value = authman.readToken(this)
             globalEmail.value = authman.readEmail(this)
-            Log.i("TOKEN: ", globalToken.value ?: " ")
         } catch (e: Exception) {
             authman.writeToken("", this)
             authman.writeEmail("", this)
@@ -64,11 +64,12 @@ class MainActivity : AppCompatActivity() {
         })
         var think = false;
 
-        viewModel.myUnitResponse.observe(this, Observer {
+        viewModel.myDataResponse.observe(this, Observer {
                 response ->
-            if (response.code() == 200 && response.body() != null && !think) {
+            if (response.code() == 200) {
+                globalRole.value = viewModel.myDataResponse.value?.body()?.data ?: ""
                 think = true;
-                navigationhub(this, "CRUD MENU")
+                navigationhub(this, viewModel.myDataResponse.value?.body()?.data ?: "")
                 this.finish()
             }
         })

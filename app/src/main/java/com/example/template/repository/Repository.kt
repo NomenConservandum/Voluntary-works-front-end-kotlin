@@ -14,7 +14,7 @@ class Repository {
         password: String,
         name: String,
 		telegramUrl: String
-    ) : Response<TokenResponseClass?> {
+    ) : Response<singleFieldResponseClass?> {
         val temp = User(
             0,
             email,
@@ -32,7 +32,7 @@ class Repository {
     suspend fun login(
         email: String,
         password: String
-    ) : Response<TokenResponseClass?>
+    ) : Response<singleFieldResponseClass?>
     {
         val temp = LogInForm(
             email,
@@ -40,7 +40,7 @@ class Repository {
         )
         return RetrofitInstance.api.login(temp)
     }
-    suspend fun check() : Response<Unit> {
+	suspend fun check() : Response<singleFieldResponseClass?> {
         return RetrofitInstance.api.check(
             "Bearer ".plus(globalToken.value ?: "")
         )

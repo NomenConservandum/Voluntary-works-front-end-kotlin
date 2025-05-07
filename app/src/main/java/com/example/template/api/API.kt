@@ -5,8 +5,6 @@ import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -37,14 +35,14 @@ interface API {
 
     @POST("/api/Auth/Registration")
     @Headers("Content-Type: application/json")
-    suspend fun register(@Body temp: User) : Response<TokenResponseClass?> // Back-End returns codes: 201 + token, 409, 500
+    suspend fun register(@Body temp: User) : Response<singleFieldResponseClass?> // Back-End returns codes: 201 + token, 409, 500
 
     @POST("/api/Auth/Login")
     @Headers("Content-Type: application/json")
-    suspend fun login(@Body temp: LogInForm) : Response<TokenResponseClass?> // Back-End returns codes: 200 + token, 401, 500
+    suspend fun login(@Body temp: LogInForm) : Response<singleFieldResponseClass?> // Back-End returns codes: 200 + token, 401, 500
 
     @GET("/api/Auth/Check")
-    suspend fun check(@Header("Authorization") token: String) : Response<Unit>
+    suspend fun check(@Header("Authorization") token: String) : Response<singleFieldResponseClass?> // returns role
 
 	@GET("/api/User/GetUsers")
 	suspend fun getUsers(@Header("Authorization") token: String) : Response<MutableList<User>>

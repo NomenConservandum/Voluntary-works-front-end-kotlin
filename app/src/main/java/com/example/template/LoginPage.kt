@@ -1,7 +1,6 @@
 package com.example.template
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -59,7 +58,7 @@ class LoginPage : AppCompatActivity() {
             removespaces(inpassword.text.toString())
         )
 
-        viewModel.myTokenResponse.observe(this, Observer {
+        viewModel.myDataResponse.observe(this, Observer {
                 response ->
             Toast.makeText(this, R.string.welcome_back, Toast.LENGTH_SHORT).show()
             globalToken.value = response?.body()!!.data

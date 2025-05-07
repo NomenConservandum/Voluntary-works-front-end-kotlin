@@ -18,7 +18,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
     val myJSONResponse: MutableLiveData<JSONObject> = MutableLiveData()
     val myErrorCodeResponse: MutableLiveData<Int> = MutableLiveData()
     val myUnitResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
-    val myTokenResponse: MutableLiveData<Response<TokenResponseClass?>> = MutableLiveData()
+    val myDataResponse: MutableLiveData<Response<singleFieldResponseClass?>> = MutableLiveData()
 	val myUserResponse: MutableLiveData<User> = MutableLiveData()
 
     fun register(
@@ -33,7 +33,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 			val name = firstname.plus(' '.plus(secondname).plus(' '.plus(patronymic)))
             val response = repository.register(email, password, name, telegramUrl)
             if (response.body() != null)
-                myTokenResponse.value = response
+                myDataResponse.value = response
             else
                 myErrorCodeResponse.value = response.code()
         }
@@ -45,7 +45,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         viewModelScope.launch {
             val response = repository.login(email, password)
             if (response.body() != null)
-                myTokenResponse.value = response
+                myDataResponse.value = response
             else
                 myErrorCodeResponse.value = response.code()
         }
@@ -53,14 +53,10 @@ class MainViewModel(private val repository: Repository): ViewModel() {
     fun check() {
         viewModelScope.launch {
             val response = repository.check()
-            if (response.code() == 200)
-				myUnitResponse.value = response // not the body,
-												// because Unit is a Unit no matter what,
-												// I'm just not really sure it will
-												// work properly if I don't save the whole
-												// response class
-            else
-                myErrorCodeResponse.value = response.code()
+			if (response.body() != null)
+				myDataResponse.value = response
+			else
+				myErrorCodeResponse.value = response.code()
         }
     }
 

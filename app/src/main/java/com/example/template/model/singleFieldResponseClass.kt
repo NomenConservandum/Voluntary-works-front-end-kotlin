@@ -1,5 +1,5 @@
 package com.example.template.model
 
-data class TokenResponseClass(
+data class singleFieldResponseClass(
     val data: String
 )
