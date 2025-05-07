@@ -4,10 +4,10 @@ data class User (
     val id: Int, // Is not entered
     val email: String,
     val password: String,
-    val Name: String, // ФИО через пробел
-    val TelegramUrl: String,
-    val Role: String, // Is not entered in registration
-    val Group: String, // Is not used at the moment
-    val Points: Int, // Is not entered in registration
-    val FinishedRequests: Int // Is not entered in registration
+    val name: String, // ФИО через пробел
+    val telegramUrl: String,
+    val role: String, // Is not entered in registration
+    val group: String, // Is not used at the moment
+    val points: Int, // Is not entered in registration
+    val finishedRequests: Int // Is not entered in registration
 )

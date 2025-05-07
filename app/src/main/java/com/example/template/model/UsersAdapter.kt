@@ -20,8 +20,7 @@ class UsersAdapter(private val dataSet: MutableList<User>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val id: TextView = view.findViewById(R.id.id)
         val email: TextView = view.findViewById(R.id.email)
-        val firstname: TextView = view.findViewById(R.id.firstname)
-        val secondname: TextView = view.findViewById(R.id.secondname)
+        val name: TextView = view.findViewById(R.id.firstname)
         val changeButton: Button = view.findViewById(R.id.change)
         val deleteButton: Button = view.findViewById(R.id.delete)
         init {
@@ -71,8 +70,7 @@ class UsersAdapter(private val dataSet: MutableList<User>) :
          */
         viewHolder.id.text = viewHolder.id.text.toString().plus(dataSet[position].id)
         viewHolder.email.text = viewHolder.email.text.toString().plus(dataSet[position].email)
-        viewHolder.firstname.text = viewHolder.firstname.text.toString().plus(dataSet[position].firstName)
-        viewHolder.secondname.text = viewHolder.secondname.text.toString().plus(dataSet[position].secondName)
+        viewHolder.name.text = viewHolder.name.text.toString().plus(dataSet[position].name)
 
         viewHolder.changeButton.setOnClickListener {
             globalChangeUser.value = dataSet[position] // as the value is changed,
