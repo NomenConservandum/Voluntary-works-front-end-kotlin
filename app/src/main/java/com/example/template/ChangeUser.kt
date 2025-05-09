@@ -23,10 +23,9 @@ class ChangeUser : AppCompatActivity() {
     lateinit var toChange: User
     lateinit var oldEmail: String
 
-    lateinit var inemail: EditText
-    lateinit var inpassword: EditText
-    lateinit var infirstname: EditText
-    lateinit var insecondname: EditText
+    lateinit var inEmail: EditText
+    lateinit var inPassword: EditText
+    lateinit var inName: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_user)
@@ -36,24 +35,21 @@ class ChangeUser : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
-        inemail = findViewById(R.id.change_email)
-        inpassword = findViewById(R.id.change_password)
-        infirstname = findViewById(R.id.change_firstname)
-        insecondname = findViewById(R.id.change_secondname)
-        toChange = globalChangeUser.value ?: User(0, "", "", "", "")
+        inEmail = findViewById(R.id.change_email)
+        inPassword = findViewById(R.id.change_password)
+        inName = findViewById(R.id.change_name)
+        toChange = globalChangeUser.value ?: User(0, "", "", "", "", "", "", 0, 0)
         oldEmail = globalChangeUser.value?.email ?: ""
 
-        inemail.setText(globalChangeUser.value?.email)
-        inpassword.setText("")
-        infirstname.setText(globalChangeUser.value?.firstName)
-        insecondname.setText(globalChangeUser.value?.secondName)
+        inEmail.setText(globalChangeUser.value?.email)
+        inPassword.setText("")
+        inName.setText(globalChangeUser.value?.name)
     }
 
     fun change(view: View?) {
-        if (removespaces(inemail.text.toString()) == "" ||
-            removespaces(inpassword.text.toString()) == "" ||
-            removespaces(infirstname.text.toString()) == "" ||
-            removespaces(insecondname.text.toString()) == "") {
+        if (removespaces(inEmail.text.toString()) == "" ||
+            removespaces(inPassword.text.toString()) == "" ||
+            removespaces(inName.text.toString()) == "") {
             Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
             return
         }
@@ -65,10 +61,14 @@ class ChangeUser : AppCompatActivity() {
         viewModel.edit(
             User(
                 globalChangeUser.value?.id ?: 0,
-                inemail.text.toString(),
-                inpassword.text.toString(),
-                infirstname.text.toString(),
-                insecondname.text.toString()
+                inEmail.text.toString(),
+                inPassword.text.toString(),
+                inName.text.toString(),
+                "",
+                "",
+                "",
+                0,
+                0
             ),
             oldEmail
         )

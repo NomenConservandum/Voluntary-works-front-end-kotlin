@@ -6,6 +6,7 @@ import com.example.template.DevMainMenu
 import com.example.template.LoginPage
 import com.example.template.SignUpPage
 import com.example.template.CRUDMenu
+import com.example.template.FeedPage
 
 fun tologinpage(context: Context) {
     // setContentView(R.layout.activity_login_page)
@@ -31,13 +32,19 @@ fun tocrudmenupage(context: Context) {
     context.startActivity(intent)
     //this.finish()
 }
+fun tofeedpage(context: Context) {
+    // setContentView(R.layout.activity_sign_up_page)
+    val intent = Intent(context, FeedPage::class.java)
+    context.startActivity(intent)
+    //this.finish()
+}
 
 fun navigationhub(context: Context, role: String) {
     when (role) {
         "Dev" -> todevmenupage(context)
         "Admin" -> println("no such menu yet")
         "MAIN MENU" -> println("no such menu yet")
-        "Student" -> tocrudmenupage(context) // temporary
+        "Student" -> tofeedpage(context) // temporary
         else -> tosignuppage(context)
     }
 }

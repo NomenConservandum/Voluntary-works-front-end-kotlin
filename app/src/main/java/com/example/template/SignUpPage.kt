@@ -1,6 +1,7 @@
 package com.example.template
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -12,6 +13,7 @@ import com.example.template.viewModel.MainViewModel
 import com.example.template.viewModelFactory.MainViewModelFactory
 import com.example.template.functions.*
 import com.example.template.functions.data_manipulation.globalEmail
+import com.example.template.functions.data_manipulation.globalRole
 import com.example.template.preferencesManager.AuthManager
 import com.example.template.functions.data_manipulation.globalToken
 import com.example.template.functions.navigation.*
@@ -74,18 +76,22 @@ class SignUpPage : AppCompatActivity() {
         viewModel.myDataResponse.observe(this, Observer {
                 response ->
             Toast.makeText(this, R.string.welcome, Toast.LENGTH_SHORT).show()
-            globalToken.value = response?.body()!!.data
-            authman.writeToken(globalToken.value.toString(), this)
-
-            authman.writeToken(globalToken.value.toString(), this)
-            if (response.body() != null) {
-                navigationhub(this, "CRUD MENU")
+            if (response?.code() == 201) { // there came a token
+                Log.i("TOKEN", "The token is ok")
+                globalToken.value = response.body()!!.data
+                authman.writeToken(globalToken.value.toString(), this)
+                viewModel.check()
+            } else if (response?.code() == 200) { // there came a role
+                Log.i("ROLE", "The role is ok")
+                globalRole.value = response.body()?.data ?: ""
+                Toast.makeText(this, "The role is ".plus(response.body()?.data ?: ""), Toast.LENGTH_SHORT).show()
+                navigationhub(this, globalRole.value.toString())
                 this.finish()
             }
         })
         viewModel.myErrorCodeResponse.observe(this, Observer {
                 response ->
-            if (response != 201) {
+            if (response != 201 && response != 200) {
                 Toast.makeText(this, "ERROR: ".plus(response.toString()), Toast.LENGTH_SHORT).show()
                 if (response == null) {
                     Toast.makeText(this, "No Response", Toast.LENGTH_SHORT).show()

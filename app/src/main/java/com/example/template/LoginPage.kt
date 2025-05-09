@@ -61,10 +61,14 @@ class LoginPage : AppCompatActivity() {
         viewModel.myDataResponse.observe(this, Observer {
                 response ->
             Toast.makeText(this, R.string.welcome_back, Toast.LENGTH_SHORT).show()
-            globalToken.value = response?.body()!!.data
-            authman.writeToken(globalToken.value.toString(), this)
-            if (response.body() != null) {
-                navigationhub(this, "CRUD MENU")
+            if (response!!.code() == 201) { // there came a token
+                globalToken.value = response.body()!!.data
+                authman.writeToken(globalToken.value.toString(), this)
+                viewModel.check()
+            } else if (response.code() == 200) { // there came a role
+                globalRole.value = response.body()?.data ?: ""
+                Toast.makeText(this, "The role is ".plus(globalRole.value), Toast.LENGTH_SHORT).show()
+                navigationhub(this, globalRole.value.toString())
                 this.finish()
             }
         })
@@ -72,7 +76,7 @@ class LoginPage : AppCompatActivity() {
                 response ->
             if (response == 401) {
                 Toast.makeText(this, "ERROR: invalid email or password", Toast.LENGTH_SHORT).show()
-            } else if (response != 200) {
+            } else if (response != 201 && response != 200) {
                 Toast.makeText(this, "ERROR: ".plus(response.toString()), Toast.LENGTH_SHORT).show()
                 if (response == null) {
                     Toast.makeText(this, "No Response", Toast.LENGTH_SHORT).show()

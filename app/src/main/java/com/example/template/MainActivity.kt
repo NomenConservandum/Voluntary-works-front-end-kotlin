@@ -47,17 +47,6 @@ class MainActivity : AppCompatActivity() {
             globalEmail.value = authman.readEmail(this)
         }
 
-        /*
-        viewModel.getRole()
-        // observe the errorCode response
-        ...
-        // if no errors observe the role response
-        viewModel.myXXXResponse.observe(this, Observer {
-            response ->
-            ...
-        })
-         */
-
         globalToken.observe(this, Observer {
             progresstext.setText(R.string.changing_layout)
             viewModel.check()
@@ -67,10 +56,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.myDataResponse.observe(this, Observer {
                 response ->
-            if (response.code() == 200) {
-                globalRole.value = viewModel.myDataResponse.value?.body()?.data ?: ""
+            if (response?.code() == 201 || response?.code() == 200 && !think) {
+                globalRole.value = response.body()?.data ?: ""
+                Toast.makeText(this, "The role is ".plus(globalRole.value), Toast.LENGTH_SHORT).show()
                 think = true;
-                navigationhub(this, viewModel.myDataResponse.value?.body()?.data ?: "")
+                navigationhub(this, globalRole.value.toString())
                 this.finish()
             }
         })
@@ -79,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             if (response == 401) {
                 Toast.makeText(this, "ERROR: invalid token", Toast.LENGTH_SHORT).show()
                 tosignuppage(this)
-            } else if (response != 200) {
+            } else if (response != 200 && response != 201) {
                 Toast.makeText(this, "ERROR: ".plus(response.toString()), Toast.LENGTH_SHORT).show()
                 if (response == null) {
                     Toast.makeText(this, "No Response", Toast.LENGTH_SHORT).show()
