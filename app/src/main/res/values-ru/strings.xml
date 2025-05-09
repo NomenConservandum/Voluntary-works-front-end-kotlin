@@ -17,24 +17,31 @@
 
     <string name="signup_hint">Ещё нет аккаунта?</string>
     <string name="signin_hint">Уже есть аккаунт?</string>
+
     <string name="action_sign_up">Зарегестрироваться</string>
     <string name="action_sign_in">Авторизироваться</string>
+
     <string name="signup_failed">Ошибка регистрации. Попробуйте ещё раз</string>
-    <string name="invalid_username">Не полноценное имя</string>
+    <string name="invalid_username">Неполноценное имя</string>
     <string name="invalid_password">Пароль должен быть больше 5-ти символов</string>
     <string name="login_failed">Ошибка авторизации.</string>
+
     <string name="dev_welcome">Добро пожаловать в меню разработчиков</string>
     <string name="org_devs">Разработчики</string>
     <string name="refresh">Перезагрузить</string>
     <string name="org_orgs">Организации</string>
+
     <string name="logout">Выйти</string>
     <string name="action_sign_in_short">Авторизация</string>
     <string name="title_activity_dev_control_dev">Контроль разработчиков</string>
     <string name="action_settings">Настройки</string>
+
     <string name="change">Редактировать</string>
     <string name="delete">Удалить</string>
+    <string name="subscribe">Записаться</string>
+    <string name="unsubscribe">Отписаться</string>
 	<string name="create">Создать</string>
-    <string name="registerdev">Зарегестрировать нового разработчика</string>
+    <string name="registerdev">Зарегистрировать нового разработчика</string>
 
     <string name="createuser">Создать пользователя</string>
     <string name="getuser">Получить пользователя</string>
@@ -42,4 +49,13 @@
     <string name="changeuser">Изменить пользователя</string>
     <string name="deleteuser">Удалить пользователя</string>
     <string name="doyouwanttodelete">Хотите ли Вы удалить данного пользователя?</string>
+
+
+    <!-- now some requests strings -->
+    <string name="address_string">Адрес: </string>
+    <string name="upload_date_string">Загружено: </string>
+    <string name="deadline_date_string">Крайний срок: </string>
+    <string name="people_string">Людей: </string>
+    <string name="description_string">Описание:</string>
+    
 </resources>

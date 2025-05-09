@@ -1,0 +1,76 @@
+package com.example.template.model
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
+import com.example.template.R
+
+
+class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
+    RecyclerView.Adapter<PublicRequestsAdapter.ViewHolder>() {
+    /**
+     * Provide a reference to the type of views that you are using
+     * (custom ViewHolder)
+     */
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val address: TextView = view.findViewById(R.id.address)
+        val upload: TextView = view.findViewById(R.id.upload)
+        val deadline: TextView = view.findViewById(R.id.deadline)
+        val description: TextView = view.findViewById(R.id.description)
+        val subscribeToggleButton: Button = view.findViewById(R.id.subscribe)
+        val counter: TextView = view.findViewById(R.id.counter)
+        var toggle: Boolean = false
+    }
+
+    // Create new views (invoked by the layout manager)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PublicRequestsAdapter.ViewHolder {
+
+        // Create a new view, which defines the UI of the list item
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.public_request_item, viewGroup, false)
+        return PublicRequestsAdapter.ViewHolder(view)
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    override fun onBindViewHolder(viewHolder: PublicRequestsAdapter.ViewHolder, position: Int) {
+
+        // Get element from your dataset at this position and replace the
+        // contents of the view with that element
+
+        viewHolder.address.text = dataSet[position].address
+        viewHolder.upload.text = dataSet[position].date.toString()
+        viewHolder.deadline.text = dataSet[position].deadLine.toString()
+        viewHolder.description.text = dataSet[position].description
+        viewHolder.counter.text = dataSet[position].respondedPeople.toString().plus('/').plus(dataSet[position].respondedPeople.toString())
+
+        //viewHolder.email.text = viewHolder.email.text.toString().plus(dataSet[position].email)
+        //viewHolder.name.text = viewHolder.name.text.toString().plus(dataSet[position].name)
+
+        viewHolder.subscribeToggleButton.setOnClickListener {
+            viewHolder.toggle = !viewHolder.toggle
+            // send request via changing some global value and warning the page thus
+            // TODO: implement such request handling method
+            if (viewHolder.toggle) {
+                val numbers = viewHolder.counter.text.split('/')
+                var firstNumber = numbers[0].toInt()
+                ++firstNumber
+                viewHolder.counter.text = firstNumber.toString().plus('/').plus(dataSet[position].respondedPeople.toString())
+            } else {
+                val numbers = viewHolder.counter.text.split('/')
+                var firstNumber = numbers[0].toInt()
+                --firstNumber
+                viewHolder.counter.text = firstNumber.toString().plus('/').plus(dataSet[position].respondedPeople.toString())
+
+            }
+        }
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    override fun getItemCount(): Int {
+        return dataSet.size
+    }
+
+}
