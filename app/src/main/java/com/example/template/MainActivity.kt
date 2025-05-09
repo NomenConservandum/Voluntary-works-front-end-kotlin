@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             progresstext.setText(R.string.changing_layout)
             viewModel.check()
         })
+
         var think = false;
 
         viewModel.myDataResponse.observe(this, Observer {
