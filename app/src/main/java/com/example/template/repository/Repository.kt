@@ -126,5 +126,19 @@ class Repository {
 		)
 	}
 
+	suspend fun promoteToAdmin(email: String) : Response<Unit> {
+		Log.i("stage", "2")
+		return RetrofitInstance.api.promoteToAdmin(
+			"Bearer ".plus(globalToken.value ?: ""),
+			email
+		)
+	}
+	suspend fun demoteToStudent(email: String) : Response<Unit> {
+		return RetrofitInstance.api.demoteToStudent(
+			"Bearer ".plus(globalToken.value ?: ""),
+			email
+		)
+	}
+
 }
 

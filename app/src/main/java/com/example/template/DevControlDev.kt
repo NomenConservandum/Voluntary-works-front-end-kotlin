@@ -48,7 +48,7 @@ class DevControlDev : AppCompatActivity() {
     }
     fun todevregistrationpage(view: View?) {
         // setContentView(R.layout.activity_login_page)
-        val intent = Intent(this, DevSignUp::class.java)
+        val intent = Intent(this, DevPromote::class.java)
         startActivity(intent)
     }
 

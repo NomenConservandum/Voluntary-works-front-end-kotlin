@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.template.functions.checkForInternet
 import com.example.template.functions.data_manipulation.globalSubscribeID
 import com.example.template.functions.data_manipulation.globalUnsubscribeID
+import com.example.template.functions.data_manipulation.logout
 import com.example.template.functions.navigation.tomyprofilepage
 import com.example.template.model.PublicRequest
 import com.example.template.model.PublicRequestsAdapter
@@ -77,6 +78,10 @@ class StudentFeedPage : AppCompatActivity() {
     }
     fun toMyProfilePage(view: View?) {
         tomyprofilepage(this)
+    }
+
+    fun logout(view: View?) {
+        logout(this)
         this.finish()
     }
 }

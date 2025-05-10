@@ -9,6 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Header
+import retrofit2.http.PUT
 import retrofit2.http.Query
 
 interface API {
@@ -35,6 +36,9 @@ interface API {
 	suspend fun unassignMe(@Header("Authorization") token: String, @Query("id") id: Int) : Response<Unit>
 
 
+	@GET("/api/AdminRequest/AdminFeed")
+	suspend fun getPrivateRequests(@Header("Authorization") token: String) : Response<MutableList<PublicRequest>>
+
 	@GET("/api/AdminUser/GetUsers")
 	suspend fun getUsers(@Header("Authorization") token: String) : Response<MutableList<User>>
 
@@ -56,5 +60,11 @@ interface API {
 
 	@GET("/api/User/GetMyProfile")
 	suspend fun getMyProfile(@Header("Authorization") token: String) : Response<User>
+
+	@PUT("/api/DevUser/PromoteToAdmin")
+	suspend fun promoteToAdmin(@Header("Authorization") token: String, @Query("userEmail") email: String) : Response<Unit>
+
+	@PUT("/api/DevUser/DemoteToStudent")
+	suspend fun demoteToStudent(@Header("Authorization") token: String, @Query("userEmail") email: String) : Response<Unit>
 
 }

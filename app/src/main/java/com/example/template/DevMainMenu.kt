@@ -19,14 +19,12 @@ class DevMainMenu : AppCompatActivity() {
         logout(this)
         this.finish()
     }
-    fun todevcontrolpage(view: View?) {
-        // setContentView(R.layout.activity_login_page)
-        val intent = Intent(this, DevControlDev::class.java)
+    fun topromotepage(view: View?) {
+        val intent = Intent(this, DevPromote::class.java)
         startActivity(intent)
     }
-    fun toorganizationspage(view: View?) {
-        // setContentView(R.layout.activity_login_page)
-        val intent = Intent(this, DevSignUp::class.java) // TODO: replace DevSignUp when implement organizations
+    fun todemotepage(view: View?) {
+        val intent = Intent(this, DevDemote::class.java)
         startActivity(intent)
     }
 }

@@ -28,6 +28,8 @@
 
     <string name="dev_welcome">Добро пожаловать в меню разработчиков</string>
     <string name="org_devs">Разработчики</string>
+    <string name="to_promote_page">Повысить человека</string>
+    <string name="to_demote_page">Понизить человека</string>
     <string name="refresh">Перезагрузить</string>
     <string name="org_orgs">Организации</string>
 
@@ -42,6 +44,8 @@
     <string name="subscribe">Записаться</string>
     <string name="unsubscribe">Отписаться</string>
 	<string name="create">Создать</string>
+    <string name="promote">Повысить</string>
+    <string name="demote">Понизить</string>
     <string name="registerdev">Зарегистрировать нового разработчика</string>
 
     <string name="createuser">Создать пользователя</string>
@@ -49,6 +53,7 @@
     <string name="getusers">Получить пользователей</string>
     <string name="changeuser">Изменить пользователя</string>
     <string name="deleteuser">Удалить пользователя</string>
+    <string name="tofeedpage">Лента запросов</string>
     <string name="doyouwanttodelete">Хотите ли Вы удалить данного пользователя?</string>
 
 

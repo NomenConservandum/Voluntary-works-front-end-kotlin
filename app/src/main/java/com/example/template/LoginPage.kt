@@ -57,15 +57,16 @@ class LoginPage : AppCompatActivity() {
             removespaces(inemail.text.toString()),
             removespaces(inpassword.text.toString())
         )
-
+        var think = false
         viewModel.myDataResponse.observe(this, Observer {
                 response ->
             Toast.makeText(this, R.string.welcome_back, Toast.LENGTH_SHORT).show()
-            if (response!!.code() == 201) { // there came a token
+            if (response!!.code() == 200 && !think) { // there came a token
                 globalToken.value = response.body()!!.data
                 authman.writeToken(globalToken.value.toString(), this)
                 viewModel.check()
-            } else if (response.code() == 200) { // there came a role
+                think = true
+            } else if (response.code() == 200 && think) { // there came a role
                 globalRole.value = response.body()?.data ?: ""
                 Toast.makeText(this, "The role is ".plus(globalRole.value), Toast.LENGTH_SHORT).show()
                 navigationhub(this, globalRole.value.toString())

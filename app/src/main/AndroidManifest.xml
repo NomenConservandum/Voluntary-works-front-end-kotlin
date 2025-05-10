@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AdminFeedPage"
+            android:exported="false" />
+        <activity
+            android:name=".DevDemote"
+            android:exported="false" />
+        <activity
             android:name=".MyProfilePage"
             android:exported="false" />
         <activity
@@ -46,7 +52,7 @@
             android:name=".DevControlDev"
             android:exported="false" />
         <activity
-            android:name=".DevSignUp"
+            android:name=".DevPromote"
             android:exported="false" />
         <activity
             android:name=".DevMainMenu"

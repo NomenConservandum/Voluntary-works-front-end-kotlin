@@ -2,6 +2,7 @@ package com.example.template.viewModel
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -172,6 +173,28 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 			val response = repository.getMyProfile()
 			if (response.code() == 200) {
 				myUserResponse.value = response.body()
+			} else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+
+
+	fun promoteToAdmin(userEmail: String) {
+		Log.i("stage", "1")
+		viewModelScope.launch {
+			val response = repository.promoteToAdmin(userEmail)
+			if (response.code() == 204) {
+				myString.value = "SUCCESS"
+			} else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+
+	fun demoteToStudent(userEmail: String) {
+		viewModelScope.launch {
+			val response = repository.demoteToStudent(userEmail)
+			if (response.code() == 204) {
+				myString.value = "SUCCESS"
 			} else
 				myErrorCodeResponse.value = response.code()
 		}

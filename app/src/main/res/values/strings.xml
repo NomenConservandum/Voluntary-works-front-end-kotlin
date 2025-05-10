@@ -26,9 +26,11 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="dev_welcome">Welcome to Devs menu</string>
-    <string name="org_devs">"Developers</string>
-    <string name="refresh">"Refresh</string>
-    <string name="org_orgs">"Organizations</string>
+    <string name="org_devs">Developers</string>
+    <string name="to_promote_page">Promote Page</string>
+    <string name="to_demote_page">Demote Page</string>
+    <string name="refresh">Refresh</string>
+    <string name="org_orgs">Organizations</string>
 
 
     <string name="createuser">Create User</string>
@@ -36,6 +38,7 @@
     <string name="getusers">Get Users</string>
     <string name="changeuser">Change User</string>
     <string name="deleteuser">Delete User</string>
+    <string name="tofeedpage">Feed Page</string>
     <string name="doyouwanttodelete">Do you want to delete the user given?</string>
 
 
@@ -51,6 +54,8 @@
     <string name="subscribe">Subscribe</string>
     <string name="unsubscribe">Unubscribe</string>
     <string name="create">Create</string>
+    <string name="promote">Promote</string>
+    <string name="demote">Demote</string>
     <string name="registerdev">Register new developer</string>
 
 
