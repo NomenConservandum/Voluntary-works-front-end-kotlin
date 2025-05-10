@@ -39,16 +39,21 @@
     <string name="doyouwanttodelete">Do you want to delete the user given?</string>
 
 
-    <string name="logout">"Log out</string>
+    <string name="logout">Log out</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="title_activity_dev_control_dev">DevControlDev</string>
     <string name="action_settings">Settings</string>
+    <string name="myprofile">My Profile</string>
+
+    <!-- action strings -->
     <string name="change">Change</string>
     <string name="delete">Delete</string>
     <string name="subscribe">Subscribe</string>
     <string name="unsubscribe">Unubscribe</string>
     <string name="create">Create</string>
     <string name="registerdev">Register new developer</string>
+
+
     <string name="title_activity_login" translatable="false">Log in</string>
 
     <!-- now some requests strings -->
@@ -57,7 +62,6 @@
     <string name="deadline_date_string">Is due: </string>
     <string name="people_string">People: </string>
     <string name="description_string">Description:</string>
-
 
 
 </resources>

@@ -6,8 +6,8 @@ data class PublicRequest (
     val id: Int,
     val adminId: Int,
     val address: String,
-    val date: LocalDateTime,
-    val deadLine: LocalDateTime,
+    val date: String, // LocalDateTime
+    val deadLine: String,
     val pointNumber: Int,
     val respondedPeople: Int,
     val neededPeopleNumber: Int,

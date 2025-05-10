@@ -1,6 +1,8 @@
 package com.example.template.viewModel
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +11,14 @@ import com.example.template.repository.Repository
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.Month
+import java.time.ZoneId
 
 class MainViewModel(private val repository: Repository): ViewModel() {
     val myResponseUsers: MutableList<User> = mutableListOf<User>()
+    val myResponsePublicRequests: MutableList<PublicRequest> = mutableListOf<PublicRequest>()
     val myCResponse: MutableLiveData<Response<CResponse>> = MutableLiveData()
     val myString: MutableLiveData<String> = MutableLiveData()
     val myStringResponse: MutableLiveData<Response<String>> = MutableLiveData()
@@ -124,6 +131,48 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 			if (response.code() == 204)
 				myString.value = "DELETED_SUCCESSFULLY"
 			else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+
+	fun getPublicRequests() {
+		viewModelScope.launch {
+			val response = repository.getPublicRequests()
+			if (response.code() == 200) {
+				myResponsePublicRequests.clear()
+				myResponsePublicRequests.addAll(0, response.body() ?: mutableListOf<PublicRequest>())
+				myString.value = "GOT_REQUESTS"
+			} else if (response.code() == 204) {
+				myResponsePublicRequests.clear()
+			} else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+	fun assignMe(id: Int) {
+		viewModelScope.launch {
+			val response = repository.delete(id)
+			if (response.code() == 204)
+				myString.value = "ASSIGNED_SUCCESSFULLY"
+			else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+	fun unassignMe(id: Int) {
+		viewModelScope.launch {
+			val response = repository.delete(id)
+			if (response.code() == 204)
+				myString.value = "UNASSIGNED_SUCCESSFULLY"
+			else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+
+	fun getMyProfile() {
+		viewModelScope.launch {
+			val response = repository.getMyProfile()
+			if (response.code() == 200) {
+				myUserResponse.value = response.body()
+			} else
 				myErrorCodeResponse.value = response.code()
 		}
 	}

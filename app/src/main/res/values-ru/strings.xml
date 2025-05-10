@@ -35,6 +35,7 @@
     <string name="action_sign_in_short">Авторизация</string>
     <string name="title_activity_dev_control_dev">Контроль разработчиков</string>
     <string name="action_settings">Настройки</string>
+    <string name="myprofile">Личный Кабинет</string>
 
     <string name="change">Редактировать</string>
     <string name="delete">Удалить</string>

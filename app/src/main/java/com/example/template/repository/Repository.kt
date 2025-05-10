@@ -45,6 +45,8 @@ class Repository {
             "Bearer ".plus(globalToken.value ?: "")
         )
     }
+
+
 	suspend fun getUsers() : Response<MutableList<User>> {
 		return RetrofitInstance.api.getUsers(
 			"Bearer ".plus(globalToken.value ?: "")
@@ -98,5 +100,31 @@ class Repository {
 			id
 		)
 	}
+
+
+	suspend fun getPublicRequests() : Response<MutableList<PublicRequest>> {
+		return RetrofitInstance.api.getPublicRequests(
+			"Bearer ".plus(globalToken.value ?: "")
+		)
+	}
+	suspend fun assignMe(id: Int) : Response<Unit> {
+		return RetrofitInstance.api.assignMe(
+			"Bearer ".plus(globalToken.value ?: ""),
+			id
+		)
+	}
+	suspend fun unassignMe(id: Int) : Response<Unit> {
+		return RetrofitInstance.api.unassignMe(
+			"Bearer ".plus(globalToken.value ?: ""),
+			id
+		)
+	}
+
+	suspend fun getMyProfile() : Response<User> {
+		return RetrofitInstance.api.getMyProfile(
+			"Bearer ".plus(globalToken.value ?: "")
+		)
+	}
+
 }
 

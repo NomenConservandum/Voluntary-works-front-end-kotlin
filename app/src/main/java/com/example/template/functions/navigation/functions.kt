@@ -6,45 +6,39 @@ import com.example.template.DevMainMenu
 import com.example.template.LoginPage
 import com.example.template.SignUpPage
 import com.example.template.CRUDMenu
-import com.example.template.FeedPage
+import com.example.template.MyProfilePage
+import com.example.template.StudentFeedPage
 
 fun tologinpage(context: Context) {
-    // setContentView(R.layout.activity_login_page)
     val intent = Intent(context, LoginPage::class.java)
     context.startActivity(intent)
-    //this.finish()
 }
 fun tosignuppage(context: Context) {
-    // setContentView(R.layout.activity_sign_up_page)
     val intent = Intent(context, SignUpPage::class.java)
     context.startActivity(intent)
-    //this.finish()
 }
 fun todevmenupage(context: Context) {
-    // setContentView(R.layout.activity_sign_up_page)
     val intent = Intent(context, DevMainMenu::class.java)
     context.startActivity(intent)
-    //this.finish()
 }
 fun tocrudmenupage(context: Context) {
-    // setContentView(R.layout.activity_sign_up_page)
     val intent = Intent(context, CRUDMenu::class.java)
     context.startActivity(intent)
-    //this.finish()
 }
 fun tofeedpage(context: Context) {
-    // setContentView(R.layout.activity_sign_up_page)
-    val intent = Intent(context, FeedPage::class.java)
+    val intent = Intent(context, StudentFeedPage::class.java)
     context.startActivity(intent)
-    //this.finish()
+}
+fun tomyprofilepage(context: Context) {
+    val intent = Intent(context, MyProfilePage::class.java)
+    context.startActivity(intent)
 }
 
 fun navigationhub(context: Context, role: String) {
     when (role) {
         "Dev" -> todevmenupage(context)
-        "Admin" -> println("no such menu yet")
-        "MAIN MENU" -> println("no such menu yet")
-        "Student" -> tofeedpage(context) // temporary
+        "Admin" -> tocrudmenupage(context)
+        "Student" -> tofeedpage(context)
         else -> tosignuppage(context)
     }
 }

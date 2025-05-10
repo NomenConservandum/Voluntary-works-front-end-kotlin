@@ -7,6 +7,8 @@ import android.widget.TextView
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.template.R
+import com.example.template.functions.data_manipulation.globalSubscribeID
+import com.example.template.functions.data_manipulation.globalUnsubscribeID
 
 
 class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
@@ -44,26 +46,29 @@ class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
         viewHolder.upload.text = dataSet[position].date.toString()
         viewHolder.deadline.text = dataSet[position].deadLine.toString()
         viewHolder.description.text = dataSet[position].description
-        viewHolder.counter.text = dataSet[position].respondedPeople.toString().plus('/').plus(dataSet[position].respondedPeople.toString())
-
-        //viewHolder.email.text = viewHolder.email.text.toString().plus(dataSet[position].email)
-        //viewHolder.name.text = viewHolder.name.text.toString().plus(dataSet[position].name)
+        viewHolder.counter.text = dataSet[position].respondedPeople.toString().plus('/').plus(dataSet[position].neededPeopleNumber.toString())
 
         viewHolder.subscribeToggleButton.setOnClickListener {
             viewHolder.toggle = !viewHolder.toggle
             // send request via changing some global value and warning the page thus
+
             // TODO: implement such request handling method
-            if (viewHolder.toggle) {
+            if (viewHolder.toggle) { // if the user clicked 'subscribe'
                 val numbers = viewHolder.counter.text.split('/')
                 var firstNumber = numbers[0].toInt()
                 ++firstNumber
-                viewHolder.counter.text = firstNumber.toString().plus('/').plus(dataSet[position].respondedPeople.toString())
+                viewHolder.counter.text = firstNumber.toString().plus('/').plus(dataSet[position].neededPeopleNumber.toString())
+                viewHolder.subscribeToggleButton.setText(R.string.unsubscribe)
+                globalSubscribeID.value = dataSet[position].id
+                globalUnsubscribeID.value = 0
             } else {
                 val numbers = viewHolder.counter.text.split('/')
                 var firstNumber = numbers[0].toInt()
                 --firstNumber
-                viewHolder.counter.text = firstNumber.toString().plus('/').plus(dataSet[position].respondedPeople.toString())
-
+                viewHolder.counter.text = firstNumber.toString().plus('/').plus(dataSet[position].neededPeopleNumber.toString())
+                viewHolder.subscribeToggleButton.setText(R.string.subscribe)
+                globalSubscribeID.value = 0
+                globalUnsubscribeID.value = dataSet[position].id
             }
         }
     }
