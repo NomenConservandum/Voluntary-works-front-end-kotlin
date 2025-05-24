@@ -20,6 +20,7 @@ import java.time.ZoneId
 class MainViewModel(private val repository: Repository): ViewModel() {
     val myResponseUsers: MutableList<User> = mutableListOf<User>()
     val myResponsePublicRequests: MutableList<PublicRequest> = mutableListOf<PublicRequest>()
+    val myResponsePrivateRequests: MutableList<PrivateRequest> = mutableListOf<PrivateRequest>()
     val myCResponse: MutableLiveData<Response<CResponse>> = MutableLiveData()
     val myString: MutableLiveData<String> = MutableLiveData()
     val myStringResponse: MutableLiveData<Response<String>> = MutableLiveData()
@@ -196,6 +197,30 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 			if (response.code() == 204) {
 				myString.value = "SUCCESS"
 			} else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+
+	fun getPrivateRequests() {
+		viewModelScope.launch {
+			val response = repository.getPrivateRequests()
+			if (response.code() == 200) {
+				myResponsePrivateRequests.clear()
+				myResponsePrivateRequests.addAll(0, response.body() ?: mutableListOf<PrivateRequest>())
+				myString.value = "GOT_REQUESTS"
+			} else if (response.code() == 204) {
+				myResponsePrivateRequests.clear()
+			} else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
+
+	fun createRequest(request: PrivateRequest) {
+		viewModelScope.launch {
+			val response = repository.createRequest(request)
+			if (response.code() == 201)
+				myString.value = "CREATED_REQUEST_SUCCESSFULLY"
+			else
 				myErrorCodeResponse.value = response.code()
 		}
 	}

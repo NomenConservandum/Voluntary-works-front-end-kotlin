@@ -30,7 +30,7 @@ class DevPromote : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
-    fun promote(view: View?) {
+    public fun promote(view: View?) {
         if (removespaces(inemail.text.toString()) == "") {
             Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
             return

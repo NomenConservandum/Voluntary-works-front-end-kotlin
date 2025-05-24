@@ -22,7 +22,7 @@ class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
         val upload: TextView = view.findViewById(R.id.upload)
         val deadline: TextView = view.findViewById(R.id.deadline)
         val description: TextView = view.findViewById(R.id.description)
-        val subscribeToggleButton: Button = view.findViewById(R.id.subscribe)
+        val subscribeToggleButton: Button = view.findViewById(R.id.admin_delete_button)
         val counter: TextView = view.findViewById(R.id.counter)
         var toggle: Boolean = false
     }
@@ -41,10 +41,11 @@ class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-
+        val date = dataSet[position].date.split('T')[0].split('-')
+        val deadline = dataSet[position].deadLine.split('T')[0].split('-')
         viewHolder.address.text = dataSet[position].address
-        viewHolder.upload.text = dataSet[position].date.toString()
-        viewHolder.deadline.text = dataSet[position].deadLine.toString()
+        viewHolder.upload.text = date[2] + '.' + date[1] + '.' + date[0]
+        viewHolder.deadline.text = deadline[2] + '.' + deadline[1] + '.' + deadline[0]
         viewHolder.description.text = dataSet[position].description
         viewHolder.counter.text = dataSet[position].respondedPeople.toString().plus('/').plus(dataSet[position].neededPeopleNumber.toString())
 

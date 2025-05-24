@@ -44,6 +44,10 @@ class CRUDMenu : AppCompatActivity() {
         val intent = Intent(this, AdminFeedPage::class.java)
         startActivity(intent)
     }
+    fun toCreateRequestPage(view: View?) {
+        val intent = Intent(this, CreateRequestPage::class.java)
+        startActivity(intent)
+    }
     fun toLogOut(view: View?) {
         logout(this)
     }

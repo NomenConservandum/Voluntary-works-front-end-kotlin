@@ -37,7 +37,10 @@ interface API {
 
 
 	@GET("/api/AdminRequest/AdminFeed")
-	suspend fun getPrivateRequests(@Header("Authorization") token: String) : Response<MutableList<PublicRequest>>
+	suspend fun getPrivateRequests(@Header("Authorization") token: String) : Response<MutableList<PrivateRequest>>
+
+	@POST("/api/AdminRequest/CreateRequest")
+	suspend fun createRequest(@Header("Authorization") token: String, @Body request: PrivateRequest) : Response<Unit> // returns either 403 or 200
 
 	@GET("/api/AdminUser/GetUsers")
 	suspend fun getUsers(@Header("Authorization") token: String) : Response<MutableList<User>>

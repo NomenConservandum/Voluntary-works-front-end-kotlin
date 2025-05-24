@@ -6,5 +6,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AdminFeedPage">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPrivateRequests"
+        android:layout_width="420dp"
+        android:layout_height="523dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/student_refresh_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="refresh"
+        android:text="@string/refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPrivateRequests" />
+
+    <Button
+        android:id="@+id/student_to_my_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toMyProfilePage"
+        android:text="@string/myprofile"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewPrivateRequests"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/go_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goback"
+        android:text="@string/goback"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewPrivateRequests"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/student_to_my_profile_button"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

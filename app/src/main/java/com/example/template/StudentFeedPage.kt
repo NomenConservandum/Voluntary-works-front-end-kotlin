@@ -13,7 +13,6 @@ import com.example.template.functions.data_manipulation.globalSubscribeID
 import com.example.template.functions.data_manipulation.globalUnsubscribeID
 import com.example.template.functions.data_manipulation.logout
 import com.example.template.functions.navigation.tomyprofilepage
-import com.example.template.model.PublicRequest
 import com.example.template.model.PublicRequestsAdapter
 import com.example.template.repository.Repository
 import com.example.template.viewModel.MainViewModel
@@ -33,7 +32,7 @@ class StudentFeedPage : AppCompatActivity() {
         val viewModelFactory = MainViewModelFactory(repository)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        recyclerView = findViewById(R.id.recyclerViewPublicRequests)
+        recyclerView = findViewById(R.id.recyclerViewPrivateRequests)
         publicRequestAdapter = PublicRequestsAdapter(viewModel.myResponsePublicRequests)
         recyclerView.adapter = publicRequestAdapter
     }

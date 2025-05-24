@@ -140,5 +140,18 @@ class Repository {
 		)
 	}
 
+	suspend fun getPrivateRequests() : Response<MutableList<PrivateRequest>> {
+		return RetrofitInstance.api.getPrivateRequests(
+			"Bearer ".plus(globalToken.value ?: "")
+		)
+	}
+
+	suspend fun createRequest(request: PrivateRequest) : Response<Unit> {
+		Log.i("REQUESTBODY", request.toString())
+		return RetrofitInstance.api.createRequest(
+			"Bearer ".plus(globalToken.value ?: ""),
+			request
+		)
+	}
 }
 

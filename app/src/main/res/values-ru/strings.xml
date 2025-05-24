@@ -15,6 +15,13 @@
     <string name="prompt_password">Пароль</string>
     <string name="prompt_telegram_tag">Ваш тег Telegram</string>
 
+
+    <string name="prompt_address">Адрес</string>
+    <string name="prompt_date">Дней на выполнение (число)</string>
+    <string name="prompt_people">Людей необходимо (число)</string>
+    <string name="prompt_points">Очков дано (число)</string>
+    <string name="prompt_description">Описание</string>
+
     <string name="signup_hint">Ещё нет аккаунта?</string>
     <string name="signin_hint">Уже есть аккаунт?</string>
 
@@ -34,6 +41,7 @@
     <string name="org_orgs">Организации</string>
 
     <string name="logout">Выйти</string>
+    <string name="goback">Вернуться</string>
     <string name="action_sign_in_short">Авторизация</string>
     <string name="title_activity_dev_control_dev">Контроль разработчиков</string>
     <string name="action_settings">Настройки</string>
@@ -54,10 +62,12 @@
     <string name="changeuser">Изменить пользователя</string>
     <string name="deleteuser">Удалить пользователя</string>
     <string name="tofeedpage">Лента запросов</string>
+    <string name="tocreaterequestpage">Создать запрос</string>
     <string name="doyouwanttodelete">Хотите ли Вы удалить данного пользователя?</string>
 
 
     <!-- now some requests strings -->
+    <string name="id_string">ID: </string>
     <string name="address_string">Адрес: </string>
     <string name="upload_date_string">Загружено: </string>
     <string name="deadline_date_string">Крайний срок: </string>

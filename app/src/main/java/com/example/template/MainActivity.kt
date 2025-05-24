@@ -1,7 +1,6 @@
 package com.example.template
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,10 +23,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         progresstext = findViewById(R.id.progresstext)
-
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
-
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         super.onCreate(savedInstanceState)

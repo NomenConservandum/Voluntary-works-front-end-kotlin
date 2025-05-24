@@ -5,100 +5,82 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CRUDMenu">
+    tools:context=".CreateRequestPage">
 
-    <Button
-        android:id="@+id/createuser"
+    <EditText
+        android:id="@+id/address_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toCreateUserPage"
-        android:text="@string/createuser"
+        android:ems="10"
+        android:hint="@string/prompt_address"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 
-    <Button
-        android:id="@+id/getuser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toGetUserPage"
-        android:text="@string/getuser"
+    <EditText
+        android:id="@+id/date_input"
+        android:layout_width="262dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="@string/prompt_date"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
-    <Button
-        android:id="@+id/getusers"
+    <EditText
+        android:id="@+id/people_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toGetUsersPage"
-        android:text="@string/getusers"
+        android:ems="10"
+        android:hint="@string/prompt_people"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.4" />
 
-    <Button
-        android:id="@+id/deleteuser"
+    <EditText
+        android:id="@+id/points_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toDeleteUserPage"
-        android:text="@string/deleteuser"
+        android:ems="10"
+        android:hint="@string/prompt_points"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.5" />
 
-    <Button
-        android:id="@+id/changeuser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toChangeUserPage"
-        android:text="@string/changeuser"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toLogOut"
-        android:text="@string/logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
-
-    <Button
-        android:id="@+id/to_feed_page_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toFeedPage"
-        android:text="@string/tofeedpage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <Button
-        android:id="@+id/to_create_request_page_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toCreateRequestPage"
-        android:text="@string/tocreaterequestpage"
+    <EditText
+        android:id="@+id/description_input"
+        android:layout_width="212dp"
+        android:layout_height="201dp"
+        android:ems="10"
+        android:hint="@string/prompt_description"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8" />
+
+    <Button
+        android:id="@+id/create_request_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="create"
+        android:text="@string/create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 </androidx.constraintlayout.widget.ConstraintLayout>
