@@ -29,12 +29,11 @@ interface API {
 	@GET("/api/StudentRequest/PublicFeed")
 	suspend fun getPublicRequests(@Header("Authorization") token: String) : Response<MutableList<PublicRequest>>
 
-	@POST("/api/StudentRequest/AssignMe")
-	suspend fun assignMe(@Header("Authorization") token: String, @Query("id") id: Int) : Response<Unit>
+	@PUT("/api/StudentRequest/AssignMe")
+	suspend fun assignMe(@Header("Authorization") token: String, @Query("requestId") id: Int) : Response<Unit>
 
-	@POST("/api/StudentRequest/UnassignMe")
-	suspend fun unassignMe(@Header("Authorization") token: String, @Query("id") id: Int) : Response<Unit>
-
+	@DELETE("/api/StudentRequest/UnassignMe")
+	suspend fun unassignMe(@Header("Authorization") token: String, @Query("requestId") id: Int) : Response<Unit>
 
 	@GET("/api/AdminRequest/AdminFeed")
 	suspend fun getPrivateRequests(@Header("Authorization") token: String) : Response<MutableList<PrivateRequest>>

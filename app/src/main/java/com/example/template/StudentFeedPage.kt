@@ -14,6 +14,7 @@ import com.example.template.functions.data_manipulation.globalUnsubscribeID
 import com.example.template.functions.data_manipulation.logout
 import com.example.template.functions.navigation.tomyprofilepage
 import com.example.template.model.PublicRequestsAdapter
+import com.example.template.preferencesManager.AuthManager
 import com.example.template.repository.Repository
 import com.example.template.viewModel.MainViewModel
 import com.example.template.viewModelFactory.MainViewModelFactory
@@ -23,8 +24,10 @@ class StudentFeedPage : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     lateinit var recyclerView: RecyclerView
     lateinit var publicRequestAdapter: PublicRequestsAdapter
+    val authman = AuthManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        authman.readAssignitions(this) // write the list globally
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_feed_page)
 
@@ -44,15 +47,8 @@ class StudentFeedPage : AppCompatActivity() {
         }
 
         viewModel.myResponsePublicRequests.clear()
-        /*
-        viewModel.myResponsePublicRequests.addAll(0, mutableListOf<PublicRequest>(
-            PublicRequest(0, 0, "", "", "", 0, 0, 10, "nothing here yet", false, false),
-            PublicRequest(1, 0, "yay", "", "", 20, 3, 4, "VERY PROFITABLE TASK", false, false),
-        )) // temporary
-         */
 
         viewModel.getPublicRequests()
-        //viewModel.myString.value = "GOT_REQUESTS" // temporary
         recyclerView.adapter?.notifyDataSetChanged()
 
         viewModel.myString.observe(this, Observer {
@@ -64,14 +60,48 @@ class StudentFeedPage : AppCompatActivity() {
             }
         })
 
+        var thinkSubscribe = false
         globalSubscribeID.observe(this, Observer {
             id ->
-            if (id != 0) viewModel.assignMe(id)
+            if (id != 0 && !thinkSubscribe) {
+                thinkSubscribe = true
+                viewModel.assignMe(id)
+                Toast.makeText(this, "assigning to " + id.toString() + "...", Toast.LENGTH_LONG).show()
+            } else if (thinkSubscribe) {
+                Toast.makeText(this, "Please wait until the request is completed", Toast.LENGTH_LONG).show()
+            }
         })
-
+        var thinkUnsubscribe = false
         globalUnsubscribeID.observe(this, Observer {
             id ->
-            if (id != 0) viewModel.unassignMe(id)
+            if (id != 0 && !thinkUnsubscribe) {
+                thinkUnsubscribe = true
+                viewModel.unassignMe(id)
+                Toast.makeText(this, "unassigning from " + id.toString() + "...", Toast.LENGTH_LONG).show()
+            } else if (thinkUnsubscribe) {
+                Toast.makeText(this, "Please wait until the request is completed", Toast.LENGTH_LONG).show()
+            }
+        })
+        viewModel.myString.observe(this, Observer {
+            response ->
+            if (response == "ASSIGNED_SUCCESSFULLY") {
+                Toast.makeText(this, "assigned to the post successfully", Toast.LENGTH_LONG).show()
+                // save it into the preferences
+                authman.addAssignition(globalSubscribeID.value?: 0, this)
+
+            } else if (response == "UNASSIGNED_SUCCESSFULLY") {
+                Toast.makeText(this, "unassigned from the post successfully", Toast.LENGTH_LONG).show()
+                // remove it from the preferences
+                authman.removeAssignition(globalUnsubscribeID.value?: 0, this)
+            }
+            thinkUnsubscribe = false
+            thinkSubscribe = false
+        })
+        viewModel.myErrorCodeResponse.observe(this, Observer {
+            code ->
+            Toast.makeText(this, "failed to (un)assign: " + code.toString(), Toast.LENGTH_LONG).show()
+            thinkUnsubscribe = false
+            thinkSubscribe = false
         })
 
     }

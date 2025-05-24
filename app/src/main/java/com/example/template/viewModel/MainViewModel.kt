@@ -152,7 +152,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 	}
 	fun assignMe(id: Int) {
 		viewModelScope.launch {
-			val response = repository.delete(id)
+			val response = repository.assignMe(id)
 			if (response.code() == 204)
 				myString.value = "ASSIGNED_SUCCESSFULLY"
 			else
@@ -161,7 +161,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 	}
 	fun unassignMe(id: Int) {
 		viewModelScope.launch {
-			val response = repository.delete(id)
+			val response = repository.unassignMe(id)
 			if (response.code() == 204)
 				myString.value = "UNASSIGNED_SUCCESSFULLY"
 			else

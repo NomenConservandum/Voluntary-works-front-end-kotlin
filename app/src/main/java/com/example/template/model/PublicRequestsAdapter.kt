@@ -7,8 +7,10 @@ import android.widget.TextView
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.template.R
+import com.example.template.functions.data_manipulation.globalAssignedIDs
 import com.example.template.functions.data_manipulation.globalSubscribeID
 import com.example.template.functions.data_manipulation.globalUnsubscribeID
+import com.example.template.preferencesManager.AuthManager
 
 
 class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
@@ -43,11 +45,20 @@ class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
         // contents of the view with that element
         val date = dataSet[position].date.split('T')[0].split('-')
         val deadline = dataSet[position].deadLine.split('T')[0].split('-')
+        val id = dataSet[position].id
         viewHolder.address.text = dataSet[position].address
         viewHolder.upload.text = date[2] + '.' + date[1] + '.' + date[0]
         viewHolder.deadline.text = deadline[2] + '.' + deadline[1] + '.' + deadline[0]
         viewHolder.description.text = dataSet[position].description
         viewHolder.counter.text = dataSet[position].respondedPeople.toString().plus('/').plus(dataSet[position].neededPeopleNumber.toString())
+
+        if (globalAssignedIDs.contains(id)) {
+            viewHolder.toggle = true
+            viewHolder.subscribeToggleButton.setText(R.string.unsubscribe)
+        } else {
+            viewHolder.toggle = false
+            viewHolder.subscribeToggleButton.setText(R.string.subscribe)
+        }
 
         viewHolder.subscribeToggleButton.setOnClickListener {
             viewHolder.toggle = !viewHolder.toggle

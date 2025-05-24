@@ -16,6 +16,7 @@ class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
      * (custom ViewHolder)
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val id: TextView = view.findViewById(R.id.id)
         val address: TextView = view.findViewById(R.id.address)
         val upload: TextView = view.findViewById(R.id.upload)
         val deadline: TextView = view.findViewById(R.id.deadline)
@@ -39,6 +40,7 @@ class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
 
+        viewHolder.id.text = dataSet[position].id.toString()
         viewHolder.address.text = dataSet[position].address
         viewHolder.upload.text = dataSet[position].date.toString()
         viewHolder.deadline.text = dataSet[position].deadLine.toString()

@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.template.functions.data_manipulation.globalAssignedIDs
 import com.example.template.functions.data_manipulation.globalEmail
 import com.example.template.functions.data_manipulation.globalRole
 import com.example.template.preferencesManager.AuthManager
@@ -36,9 +37,11 @@ class MainActivity : AppCompatActivity() {
         try {
             globalToken.value = authman.readToken(this)
             globalEmail.value = authman.readEmail(this)
+            authman.readAssignitions(this)
         } catch (e: Exception) {
             authman.writeToken("", this)
             authman.writeEmail("", this)
+            authman.writeAssignitions(emptyList(), this)
             // The user has opened the app for the first time creating the field
             globalToken.value = authman.readToken(this)
             globalEmail.value = authman.readEmail(this)
