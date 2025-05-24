@@ -41,6 +41,9 @@ interface API {
 	@POST("/api/AdminRequest/CreateRequest")
 	suspend fun createRequest(@Header("Authorization") token: String, @Body request: PrivateRequest) : Response<Unit> // returns either 403 or 200
 
+	@DELETE("/api/AdminRequest/DeleteRequest")
+	suspend fun deleteRequest(@Header("Authorization") token: String, @Query("id") id: Int) : Response<Unit>
+
 	@GET("/api/AdminUser/GetUsers")
 	suspend fun getUsers(@Header("Authorization") token: String) : Response<MutableList<User>>
 

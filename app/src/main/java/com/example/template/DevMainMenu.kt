@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.template.functions.data_manipulation.*
 import com.example.template.functions.data_manipulation.globalToken
+import com.example.template.functions.navigation.navigationhub
 
 
 class DevMainMenu : AppCompatActivity() {
@@ -26,5 +27,9 @@ class DevMainMenu : AppCompatActivity() {
     fun todemotepage(view: View?) {
         val intent = Intent(this, DevDemote::class.java)
         startActivity(intent)
+    }
+    fun toAdminPage(view: View?) {
+        navigationhub(this, "Admin")
+        this.finish()
     }
 }

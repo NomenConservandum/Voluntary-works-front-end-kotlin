@@ -224,4 +224,14 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 				myErrorCodeResponse.value = response.code()
 		}
 	}
+
+	fun deleteRequest(id: Int) {
+		viewModelScope.launch {
+			val response = repository.deleteRequest(id)
+			if (response.code() == 204)
+				myString.value = "DELETED_REQUEST_SUCCESSFULLY"
+			else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
 }

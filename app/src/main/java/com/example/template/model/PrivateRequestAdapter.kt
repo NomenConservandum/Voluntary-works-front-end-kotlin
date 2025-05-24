@@ -7,7 +7,7 @@ import android.widget.TextView
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.template.R
-import com.example.template.functions.data_manipulation.globalDeleteRequest
+import com.example.template.functions.data_manipulation.globalDeleteRequestID
 
 class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
     RecyclerView.Adapter<PrivateRequestsAdapter.ViewHolder>() {
@@ -42,8 +42,8 @@ class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
 
         viewHolder.id.text = dataSet[position].id.toString()
         viewHolder.address.text = dataSet[position].address
-        viewHolder.upload.text = dataSet[position].date.toString()
-        viewHolder.deadline.text = dataSet[position].deadLine.toString()
+        viewHolder.upload.text = dataSet[position].date
+        viewHolder.deadline.text = dataSet[position].deadLine
         /*
         viewHolder.upload.text = dataSet[position].date.dayOfMonth.toString() + '.' + dataSet[position].date.monthValue.toString() + '.' + dataSet[position].date.year.toString()
         viewHolder.deadline.text = dataSet[position].deadLine.dayOfMonth.toString() + '.' + dataSet[position].deadLine.monthValue.toString() + '.' + dataSet[position].deadLine.year.toString()
@@ -53,7 +53,7 @@ class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
 
         viewHolder.deleteToggleButton.setOnClickListener {
             // send request via changing some global value and warning the page thus to change the layout
-            globalDeleteRequest.value = dataSet[position]
+            globalDeleteRequestID.value = dataSet[position].id
         }
     }
 

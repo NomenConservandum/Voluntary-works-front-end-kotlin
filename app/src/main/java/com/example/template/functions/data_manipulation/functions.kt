@@ -11,6 +11,7 @@ fun logout(context: Context) {
     val authman = AuthManager()
     authman.writeToken("", context)
     authman.writeEmail("", context)
+    authman.writeAssignitions(emptyList(), context)
     globalEmail.value = ""
     tosignuppage(context)
     globalEmail.value = ""

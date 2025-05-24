@@ -35,6 +35,7 @@
     <string name="org_devs">Developers</string>
     <string name="to_promote_page">Promote Page</string>
     <string name="to_demote_page">Demote Page</string>
+    <string name="to_admin_menu_page">Admin Menu</string>
     <string name="refresh">Refresh</string>
     <string name="org_orgs">Organizations</string>
 

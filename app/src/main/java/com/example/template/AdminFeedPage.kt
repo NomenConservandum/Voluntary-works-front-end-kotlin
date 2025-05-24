@@ -9,13 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.template.functions.checkForInternet
-import com.example.template.functions.data_manipulation.globalDeleteRequest
-import com.example.template.functions.data_manipulation.globalSubscribeID
-import com.example.template.functions.data_manipulation.globalUnsubscribeID
+import com.example.template.functions.data_manipulation.globalDeleteRequestID
 import com.example.template.functions.navigation.navigationhub
 import com.example.template.functions.navigation.tomyprofilepage
 import com.example.template.model.PrivateRequestsAdapter
-import com.example.template.model.PublicRequestsAdapter
 import com.example.template.repository.Repository
 import com.example.template.viewModel.MainViewModel
 import com.example.template.viewModelFactory.MainViewModelFactory
@@ -55,12 +52,15 @@ class AdminFeedPage : AppCompatActivity() {
                 viewModel.myString.value = ""
                 recyclerView.swapAdapter(PrivateRequestsAdapter(viewModel.myResponsePrivateRequests), true)
                 recyclerView.layoutManager = LinearLayoutManager(this)
+            } else if (response == "DELETED_REQUEST_SUCCESSFULLY") {
+                Toast.makeText(this, "Deleted the request successfully", Toast.LENGTH_LONG).show()
             }
         })
 
-        globalDeleteRequest.observe(this, Observer {
-            //   request ->
-            // switch to the 'delete request' page
+        globalDeleteRequestID.observe(this, Observer {
+               id ->
+            viewModel.deleteRequest(id)
+            Toast.makeText(this, "Deleting the request " + id.toString(), Toast.LENGTH_LONG).show()
         })
 
     }

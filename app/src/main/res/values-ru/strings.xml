@@ -37,6 +37,7 @@
     <string name="org_devs">Разработчики</string>
     <string name="to_promote_page">Повысить человека</string>
     <string name="to_demote_page">Понизить человека</string>
+    <string name="to_admin_menu_page">Меню админов</string>
     <string name="refresh">Перезагрузить</string>
     <string name="org_orgs">Организации</string>
 

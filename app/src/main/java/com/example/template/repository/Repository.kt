@@ -153,5 +153,12 @@ class Repository {
 			request
 		)
 	}
+
+	suspend fun deleteRequest(id: Int) : Response<Unit> {
+		return RetrofitInstance.api.deleteRequest(
+			"Bearer ".plus(globalToken.value ?: ""),
+			id
+		)
+	}
 }
 

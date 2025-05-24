@@ -1,5 +1,6 @@
 package com.example.template
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -70,6 +71,8 @@ class CreateRequestPage : AppCompatActivity() {
                 value ->
             if (value == "CREATED_REQUEST_SUCCESSFULLY")
                 Toast.makeText(this, "The request has been created successfully", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, AdminFeedPage::class.java)
+                startActivity(intent)
         })
     }
 }
