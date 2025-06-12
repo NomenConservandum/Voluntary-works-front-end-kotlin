@@ -1,6 +1,7 @@
 package com.example.template
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -58,18 +59,27 @@ class LoginPage : AppCompatActivity() {
             removespaces(inpassword.text.toString())
         )
         var think = false
-        viewModel.myDataResponse.observe(this, Observer {
+        viewModel.myTokensResponse.observe(this, Observer {
                 response ->
             Toast.makeText(this, R.string.welcome_back, Toast.LENGTH_SHORT).show()
             if (response!!.code() == 200 && !think) { // there came a token
-                globalToken.value = response.body()!!.data
-                authman.writeToken(globalToken.value.toString(), this)
-                viewModel.check()
+                Log.i("TOKEN", "The tokens are fine")
+                globalAccessToken.value = response.body()!!.accessToken
+                globalRefreshToken.value = response.body()!!.refreshToken
+                authman.writeAccessToken(globalAccessToken.value.toString(), this)
+                authman.writeRefreshToken(globalRefreshToken.value.toString(), this)
+
+                viewModel.check() // retrieve our role
                 think = true
-            } else if (response.code() == 200 && think) { // there came a role
+            }
+        })
+        viewModel.myDataResponse.observe(this, Observer {
+                response ->
+            if (response.code() == 200 && think) { // there came a role
                 globalRole.value = response.body()?.data ?: ""
                 Toast.makeText(this, "The role is ".plus(globalRole.value), Toast.LENGTH_SHORT).show()
                 navigationhub(this, globalRole.value.toString())
+                Toast.makeText(this, R.string.welcome_back, Toast.LENGTH_SHORT).show()
                 this.finish()
             }
         })
@@ -77,7 +87,7 @@ class LoginPage : AppCompatActivity() {
                 response ->
             if (response == 401) {
                 Toast.makeText(this, "ERROR: invalid email or password", Toast.LENGTH_SHORT).show()
-            } else if (response != 201 && response != 200) {
+            } else {
                 Toast.makeText(this, "ERROR: ".plus(response.toString()), Toast.LENGTH_SHORT).show()
                 if (response == null) {
                     Toast.makeText(this, "No Response", Toast.LENGTH_SHORT).show()

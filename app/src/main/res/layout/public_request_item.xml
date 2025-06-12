@@ -76,17 +76,17 @@
     <Button
         android:id="@+id/admin_delete_button"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="134dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginTop="194dp"
-        android:text="@string/subscribe" />
+        android:text="@string/unsubscribe" />
 
     <TextView
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="194dp"
         android:fontFamily="sans-serif-black"
         android:text="0/X"

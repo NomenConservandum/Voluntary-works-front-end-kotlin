@@ -15,7 +15,8 @@ import com.example.template.functions.*
 import com.example.template.functions.data_manipulation.globalEmail
 import com.example.template.functions.data_manipulation.globalRole
 import com.example.template.preferencesManager.AuthManager
-import com.example.template.functions.data_manipulation.globalToken
+import com.example.template.functions.data_manipulation.globalAccessToken
+import com.example.template.functions.data_manipulation.globalRefreshToken
 import com.example.template.functions.navigation.*
 
 class SignUpPage : AppCompatActivity() {
@@ -73,16 +74,22 @@ class SignUpPage : AppCompatActivity() {
             removespaces(inTelegramURL.text.toString())
         )
 
+        viewModel.myTokensResponse.observe(this, Observer {
+                response ->
+            if (response?.code() == 201) { // there came tokens
+                Log.i("TOKEN", "The tokens are fine")
+                globalAccessToken.value = response.body()!!.accessToken
+                globalRefreshToken.value = response.body()!!.refreshToken
+                authman.writeAccessToken(globalAccessToken.value.toString(), this)
+                authman.writeRefreshToken(globalRefreshToken.value.toString(), this)
+
+                viewModel.check() // retrieve our role
+            }
+        })
         viewModel.myDataResponse.observe(this, Observer {
                 response ->
-            Toast.makeText(this, R.string.welcome, Toast.LENGTH_SHORT).show()
-            if (response?.code() == 201) { // there came a token
-                Log.i("TOKEN", "The token is ok")
-                globalToken.value = response.body()!!.data
-                authman.writeToken(globalToken.value.toString(), this)
-                viewModel.check()
-            } else if (response?.code() == 200) { // there came a role
-                Log.i("ROLE", "The role is ok")
+            if (response?.code() == 200) { // there came a role
+                Toast.makeText(this, R.string.welcome, Toast.LENGTH_SHORT).show()
                 globalRole.value = response.body()?.data ?: ""
                 Toast.makeText(this, "The role is ".plus(response.body()?.data ?: ""), Toast.LENGTH_SHORT).show()
                 navigationhub(this, globalRole.value.toString())
@@ -91,7 +98,9 @@ class SignUpPage : AppCompatActivity() {
         })
         viewModel.myErrorCodeResponse.observe(this, Observer {
                 response ->
-            if (response != 201 && response != 200) {
+            if (response == 401) {
+                Toast.makeText(this, "ERROR: Improper input", Toast.LENGTH_SHORT).show()
+            } else {
                 Toast.makeText(this, "ERROR: ".plus(response.toString()), Toast.LENGTH_SHORT).show()
                 if (response == null) {
                     Toast.makeText(this, "No Response", Toast.LENGTH_SHORT).show()

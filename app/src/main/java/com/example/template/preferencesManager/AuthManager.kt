@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 class AuthManager {
-    val TOKEN_KEY = stringPreferencesKey("jwt_token")
+    val REFRESH_TOKEN_KEY = stringPreferencesKey("jwt_refresh_token")
+    val ACCESS_TOKEN_KEY = stringPreferencesKey("jwt_access_token")
     val EMAIL_KEY = stringPreferencesKey("email")
     val ASSIGNED_KEY = stringPreferencesKey("assigned_array")
 
@@ -40,10 +41,12 @@ class AuthManager {
             result = result.plus(item.toInt())
         globalAssignedIDs.addAll(result)
 
-        return retString // TODO: check this one
+        return retString
     }
 
     fun addAssignition(id: Int, context: Context) {
+
+        globalAssignedIDs.clear()
         var list: List<String>
         list = readAssignitions(context)
         var newLst: List<String>
@@ -53,16 +56,18 @@ class AuthManager {
         writeAssignitions(newLst, context)
     }
     fun removeAssignition(id: Int, context: Context) {
+
+        globalAssignedIDs.clear()
         var list: List<String>
         list = readAssignitions(context)
         var newLst: List<String>
-        newLst = list
-        if (list.contains(id.toString()))
-            newLst = list.minus(id.toString())
+        newLst = list.minus(id.toString())
         writeAssignitions(newLst, context)
     }
 
     fun writeAssignitions(list: List<String>, context: Context) {
+
+        globalAssignedIDs.clear()
         if (list.isEmpty()) {
             runBlocking(Dispatchers.IO) { // what a mess...
                 context.dataStore.edit { settings ->
@@ -84,25 +89,46 @@ class AuthManager {
     }
 
 
-    fun writeToken(token: String, context: Context) {
+    fun writeRefreshToken(token: String, context: Context) {
         runBlocking(Dispatchers.IO) { // what a mess...
             context.dataStore.edit { settings ->
-                settings[TOKEN_KEY] = token
+                settings[REFRESH_TOKEN_KEY] = token
             }
         }
     }
 
-    fun readToken(context: Context): String {
+    fun readRefreshToken(context: Context): String {
         var retString: String
         val retValue: Flow<String> = context.dataStore.data
             .map { preferences ->
                 // No type safety.
-                preferences[TOKEN_KEY] ?: ""
+                preferences[REFRESH_TOKEN_KEY] ?: ""
             }
         runBlocking(Dispatchers.IO) {
             retString = retValue.first()
         }
-        return retString // TODO: check this one
+        return retString
+    }
+
+    fun writeAccessToken(token: String, context: Context) {
+        runBlocking(Dispatchers.IO) { // what a mess...
+            context.dataStore.edit { settings ->
+                settings[ACCESS_TOKEN_KEY] = token
+            }
+        }
+    }
+
+    fun readAccessToken(context: Context): String {
+        var retString: String
+        val retValue: Flow<String> = context.dataStore.data
+            .map { preferences ->
+                // No type safety.
+                preferences[ACCESS_TOKEN_KEY] ?: ""
+            }
+        runBlocking(Dispatchers.IO) {
+            retString = retValue.first()
+        }
+        return retString
     }
 
     fun writeEmail(email: String, context: Context) {
@@ -122,6 +148,6 @@ class AuthManager {
         runBlocking(Dispatchers.IO) {
             retString = retValue.first()
         }
-        return retString // TODO: check this one
+        return retString
     }
 }

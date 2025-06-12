@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.template.functions.checkForInternet
+import com.example.template.functions.data_manipulation.globalAssignedIDs
 import com.example.template.functions.data_manipulation.globalSubscribeID
 import com.example.template.functions.data_manipulation.globalUnsubscribeID
 import com.example.template.functions.data_manipulation.logout
@@ -28,6 +29,8 @@ class StudentFeedPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         authman.readAssignitions(this) // write the list globally
+        Toast.makeText(this, globalAssignedIDs.toString(), Toast.LENGTH_LONG).show()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_feed_page)
 
@@ -88,7 +91,6 @@ class StudentFeedPage : AppCompatActivity() {
                 Toast.makeText(this, "assigned to the post successfully", Toast.LENGTH_LONG).show()
                 // save it into the preferences
                 authman.addAssignition(globalSubscribeID.value?: 0, this)
-
             } else if (response == "UNASSIGNED_SUCCESSFULLY") {
                 Toast.makeText(this, "unassigned from the post successfully", Toast.LENGTH_LONG).show()
                 // remove it from the preferences

@@ -4,10 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.template.preferencesManager.AuthManager
-import com.example.template.functions.data_manipulation.globalToken
+import com.example.template.functions.data_manipulation.globalAccessToken
 import com.example.template.functions.data_manipulation.logout
 
 class CRUDMenu : AppCompatActivity() {
@@ -17,7 +16,7 @@ class CRUDMenu : AppCompatActivity() {
         setContentView(R.layout.activity_crudmenu)
 
         val contextTemp: Context = this
-        globalToken.value = authman.readToken(contextTemp)
+        globalAccessToken.value = authman.readAccessToken(contextTemp)
         //Toast.makeText(this, globalToken.value, Toast.LENGTH_SHORT).show()
     }
     fun toCreateUserPage(view: View?) {
@@ -50,5 +49,6 @@ class CRUDMenu : AppCompatActivity() {
     }
     fun toLogOut(view: View?) {
         logout(this)
+        this.finish()
     }
 }

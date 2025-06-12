@@ -1,5 +1,6 @@
 package com.example.template.model
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +41,6 @@ class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: PublicRequestsAdapter.ViewHolder, position: Int) {
-
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         val date = dataSet[position].date.split('T')[0].split('-')
@@ -53,6 +53,7 @@ class PublicRequestsAdapter(private val dataSet: MutableList<PublicRequest>) :
         viewHolder.counter.text = dataSet[position].respondedPeople.toString().plus('/').plus(dataSet[position].neededPeopleNumber.toString())
 
         if (globalAssignedIDs.contains(id)) {
+            Log.i("IDs", "Contains " + id.toString())
             viewHolder.toggle = true
             viewHolder.subscribeToggleButton.setText(R.string.unsubscribe)
         } else {

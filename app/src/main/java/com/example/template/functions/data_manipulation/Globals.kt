@@ -7,7 +7,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.MutableLiveData
 import com.example.template.model.User
 
-val globalToken: MutableLiveData<String> = MutableLiveData()
+val globalAccessToken: MutableLiveData<String> = MutableLiveData()
+val globalRefreshToken: MutableLiveData<String> = MutableLiveData()
 val globalEmail: MutableLiveData<String> = MutableLiveData()
 val globalChangeUser: MutableLiveData<User> = MutableLiveData()
 val globalDeleteUser: MutableLiveData<User> = MutableLiveData()

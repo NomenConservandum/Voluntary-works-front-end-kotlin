@@ -16,13 +16,21 @@ interface API {
 
     @POST("/api/Auth/Registration")
     @Headers("Content-Type: application/json")
-    suspend fun register(@Body temp: User) : Response<singleFieldResponseClass?> // Back-End returns codes: 201 + token, 409, 500
+    suspend fun register(@Body temp: User) : Response<Tokens?> // Back-End returns codes: 201 + tokens, 409, 500
 
     @POST("/api/Auth/Login")
     @Headers("Content-Type: application/json")
-    suspend fun login(@Body temp: LogInForm) : Response<singleFieldResponseClass?> // Back-End returns codes: 200 + token, 401, 500
+    suspend fun login(@Body temp: LogInForm) : Response<Tokens?> // Back-End returns codes: 200 + tokens, 401, 500
 
-    @GET("/api/Auth/Check")
+	@DELETE("/api/Auth/Revoke")
+	@Headers("Content-Type: application/json")
+	suspend fun revoke(@Header("Authorization") token: String) : Response<Unit> // returns 200 + nothing or 401 + nothing
+
+	@GET("/api/Auth/RefreshTokens")
+	@Headers("Content-Type: application/json")
+	suspend fun refresh(@Query("oldRefreshToken") RefreshToken: String) : Response<Tokens?> // returns 200 + tokens or 404 + nothing
+
+	@GET("/api/Auth/Check")
     suspend fun check(@Header("Authorization") token: String) : Response<singleFieldResponseClass?> // returns role
 
 

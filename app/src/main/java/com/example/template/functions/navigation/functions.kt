@@ -6,6 +6,7 @@ import com.example.template.DevMainMenu
 import com.example.template.LoginPage
 import com.example.template.SignUpPage
 import com.example.template.CRUDMenu
+import com.example.template.LogOutPage
 import com.example.template.MyProfilePage
 import com.example.template.StudentFeedPage
 
@@ -31,6 +32,10 @@ fun tofeedpage(context: Context) {
 }
 fun tomyprofilepage(context: Context) {
     val intent = Intent(context, MyProfilePage::class.java)
+    context.startActivity(intent)
+}
+fun tologoutpage(context: Context) {
+    val intent = Intent(context, LogOutPage::class.java)
     context.startActivity(intent)
 }
 
