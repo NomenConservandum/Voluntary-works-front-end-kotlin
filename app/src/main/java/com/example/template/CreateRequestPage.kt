@@ -69,8 +69,8 @@ class CreateRequestPage : AppCompatActivity() {
         })
         viewModel.myString.observe(this, Observer {
                 value ->
-            if (value == "CREATED_REQUEST_SUCCESSFULLY")
-                Toast.makeText(this, "The request has been created successfully", Toast.LENGTH_SHORT).show()
+                if (value == "CREATED_REQUEST_SUCCESSFULLY")
+                    Toast.makeText(this, "The request has been created successfully", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, AdminFeedPage::class.java)
                 startActivity(intent)
         })

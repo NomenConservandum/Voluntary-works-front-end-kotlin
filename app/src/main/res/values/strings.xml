@@ -42,6 +42,7 @@
 
     <string name="createuser">Create User</string>
     <string name="getuser">Get User</string>
+    <string name="get_button">Get</string>
     <string name="getusers">Get Users</string>
     <string name="changeuser">Change User</string>
     <string name="deleteuser">Delete User</string>
@@ -72,6 +73,8 @@
 
     <!-- now some requests strings -->
     <string name="id_string">ID: </string>
+    <string name="email_string">Email: </string>
+    <string name="name_string">Name: </string>
     <string name="address_string">Address: </string>
     <string name="upload_date_string">Uploaded: </string>
     <string name="deadline_date_string">Is due: </string>

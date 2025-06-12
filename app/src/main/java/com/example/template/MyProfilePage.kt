@@ -12,13 +12,19 @@ import com.example.template.viewModelFactory.MainViewModelFactory
 class MyProfilePage : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var myprofile_string: TextView
+    private lateinit var myprofile_name: TextView
+    private lateinit var myprofile_email: TextView
+    private lateinit var myprofile_tgurl: TextView
+    //private lateinit var myprofile_string: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_profile_page)
 
-        myprofile_string = findViewById(R.id.myprofile_temp_string)
+        myprofile_name = findViewById(R.id.myprofile_name)
+        myprofile_email = findViewById(R.id.myprofile_email)
+        myprofile_tgurl = findViewById(R.id.myprofile_tgurl)
+        //myprofile_string = findViewById(R.id.myprofile_temp_string)
 
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
@@ -29,7 +35,10 @@ class MyProfilePage : AppCompatActivity() {
 
         viewModel.myUserResponse.observe(this, Observer {
             response ->
-            myprofile_string.text = response.toString()
+            myprofile_name.text = response.name
+            myprofile_email.text = response.email
+            myprofile_tgurl.text = response.telegramUrl
+            //myprofile_string.text = response.toString()
         })
 
     }

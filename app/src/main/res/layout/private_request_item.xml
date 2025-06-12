@@ -21,7 +21,7 @@
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="15dp"
         android:text="" />
 
@@ -37,13 +37,13 @@
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="35dp"
         android:text="" />
 
     <TextView
         android:id="@+id/upload_date_string"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="75dp"
         android:layout_marginStart="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,8 +52,8 @@
         android:id="@+id/upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="75dp"
         android:text="" />
 
     <TextView
@@ -61,14 +61,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="95dp"
         android:text="@string/deadline_date_string" />
     <TextView
         android:id="@+id/deadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="95dp"
         android:text="" />
 
     <TextView
@@ -76,9 +76,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="115dp"
         android:text="@string/description_string"
-        android:textColor="#6D000000"
         android:textSize="11sp" />
 
     <TextView
@@ -86,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="125dp"
         android:text=""
         android:textSize="14sp" />
 

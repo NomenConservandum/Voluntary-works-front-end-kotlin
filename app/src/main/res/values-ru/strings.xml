@@ -59,6 +59,7 @@
 
     <string name="createuser">Создать пользователя</string>
     <string name="getuser">Получить пользователя</string>
+    <string name="get_button">Получить</string>
     <string name="getusers">Получить пользователей</string>
     <string name="changeuser">Изменить пользователя</string>
     <string name="deleteuser">Удалить пользователя</string>
@@ -67,8 +68,10 @@
     <string name="doyouwanttodelete">Хотите ли Вы удалить данного пользователя?</string>
 
 
-    <!-- now some requests strings -->
+    <!-- now some items strings -->
     <string name="id_string">ID: </string>
+    <string name="email_string">Почта: </string>
+    <string name="name_string">Имя: </string>
     <string name="address_string">Адрес: </string>
     <string name="upload_date_string">Загружено: </string>
     <string name="deadline_date_string">Крайний срок: </string>

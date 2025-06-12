@@ -15,7 +15,7 @@
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID: " />
+        android:text="@string/id_string" />
 
     <TextView
         android:id="@+id/email"
@@ -23,7 +23,7 @@
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EMAIL: " />
+        android:text="@string/email_string" />
 
     <TextView
         android:id="@+id/firstname"
@@ -31,23 +31,23 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="55dp"
-        android:text="NAME: " />
+        android:text="@string/name_string" />
 
     <Button
         android:id="@+id/change"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="192dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="125dp"
         android:text="@string/change" />
 
     <Button
         android:id="@+id/delete"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="192dp"
+        android:layout_marginLeft="144dp"
         android:layout_marginTop="125dp"
         android:text="@string/delete" />
 </com.google.android.material.card.MaterialCardView>

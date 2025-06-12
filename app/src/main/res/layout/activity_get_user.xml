@@ -12,8 +12,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:ems="10"
-		android:inputType="text"
-		android:text="ID"
+		android:hint="ID"
+		android:inputType="number"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:ems="10"
+		android:hint="Email"
 		android:inputType="text"
-		android:text="Email"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:onClick="get"
-		android:text="Get"
+		android:text="@string/get_button"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +59,9 @@
 		android:id="@+id/GetUserOutputText"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Output"
-		tools:layout_editor_absoluteX="172dp"
-		tools:layout_editor_absoluteY="153dp" />
+		app:layout_constraintBottom_toTopOf="@+id/findByIdText"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
