@@ -14,6 +14,10 @@
     <string name="prompt_email">Эл. Почта</string>
     <string name="prompt_password">Пароль</string>
     <string name="prompt_telegram_tag">Ваш тег Telegram</string>
+    <string name="prompt_role">Роль</string>
+    <string name="prompt_group">Группа</string>
+    <string name="prompt_points_user">Очков заработано</string>
+    <string name="prompt_completed">Завершено</string>
 
 
     <string name="prompt_address">Адрес</string>

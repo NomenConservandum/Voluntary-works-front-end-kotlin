@@ -26,6 +26,11 @@ class ChangeUser : AppCompatActivity() {
     lateinit var inEmail: EditText
     lateinit var inPassword: EditText
     lateinit var inName: EditText
+    lateinit var inTGUrl: EditText
+    lateinit var inRole: EditText
+    lateinit var inGroup: EditText
+    lateinit var inPoints: EditText
+    lateinit var inCompleted: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_user)
@@ -38,12 +43,23 @@ class ChangeUser : AppCompatActivity() {
         inEmail = findViewById(R.id.change_email)
         inPassword = findViewById(R.id.change_password)
         inName = findViewById(R.id.change_name)
+        inTGUrl = findViewById(R.id.change_tgurl)
+        inRole = findViewById(R.id.change_role)
+        inGroup = findViewById(R.id.change_group)
+        inPoints = findViewById(R.id.change_points)
+        inCompleted = findViewById(R.id.change_completed)
+
         toChange = globalChangeUser.value ?: User(0, "", "", "", "", "", "", 0, 0)
         oldEmail = globalChangeUser.value?.email ?: ""
 
         inEmail.setText(globalChangeUser.value?.email)
         inPassword.setText("")
         inName.setText(globalChangeUser.value?.name)
+        inTGUrl.setText(globalChangeUser.value?.telegramUrl)
+        inRole.setText(globalChangeUser.value?.role)
+        inGroup.setText(globalChangeUser.value?.group)
+        inPoints.setText(globalChangeUser.value?.points?.toString())
+        inCompleted.setText(globalChangeUser.value?.finishedRequests?.toString())
     }
 
     fun change(view: View?) {
@@ -64,11 +80,11 @@ class ChangeUser : AppCompatActivity() {
                 inEmail.text.toString(),
                 inPassword.text.toString(),
                 inName.text.toString(),
-                "",
-                "",
-                "",
-                0,
-                0
+                inTGUrl.text.toString(),
+                inRole.text.toString(),
+                inGroup.text.toString(),
+                inPoints.text.toString().toInt(),
+                inCompleted.text.toString().toInt()
             ),
             oldEmail
         )
@@ -77,7 +93,7 @@ class ChangeUser : AppCompatActivity() {
         viewModel.myString.observe(this, Observer {
                 response ->
             if (response == "SUCCESS") {
-                navigationhub(this, "CRUD MENU")
+                navigationhub(this, "Admin")
                 this.finish()
                 Toast.makeText(this, response, Toast.LENGTH_SHORT).show()
             }
@@ -86,13 +102,11 @@ class ChangeUser : AppCompatActivity() {
                 response ->
             if (response == 422) {
                 Toast.makeText(this, "ERROR: invalid input", Toast.LENGTH_SHORT).show()
-                tosignuppage(this)
             } else if (response != 201) {
                 Toast.makeText(this, "ERROR: ".plus(response.toString()), Toast.LENGTH_SHORT).show()
                 if (response == null) {
                     Toast.makeText(this, "No Response", Toast.LENGTH_SHORT).show()
                 }
-                tosignuppage(this)
             }
             this.finish()
         })
