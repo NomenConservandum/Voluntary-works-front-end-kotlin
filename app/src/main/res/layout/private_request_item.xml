@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="256dp"
+    android:layout_height="318dp"
     android:layout_marginLeft="48dp"
     android:layout_marginRight="48dp"
     android:gravity="center_vertical"
@@ -107,4 +107,13 @@
         android:fontFamily="sans-serif-black"
         android:text="0/X"
         android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/admin_mark_as_completed_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="250dp"
+        android:text="@string/mark" />
 </com.google.android.material.card.MaterialCardView>

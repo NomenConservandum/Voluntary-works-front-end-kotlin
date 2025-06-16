@@ -18,6 +18,8 @@
     <string name="prompt_group">Группа</string>
     <string name="prompt_points_user">Очков заработано</string>
     <string name="prompt_completed">Завершено</string>
+    <string name="prompt_request_id">ID запроса</string>
+    <string name="prompt_id_user">ID человека: Добавить / Убрать</string>
 
 
     <string name="prompt_address">Адрес</string>
@@ -54,6 +56,10 @@
 
     <string name="change">Редактировать</string>
     <string name="delete">Удалить</string>
+    <string name="mark">Отметить</string>
+    <string name="completed">Завершён</string>
+    <string name="add_or_remove">Добавить / Убрать</string>
+    <string name="send">Отправить</string>
     <string name="subscribe">Записаться</string>
     <string name="unsubscribe">Отписаться</string>
 	<string name="create">Создать</string>

@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MarkAsCompletedPage"
+            android:exported="false" />
+        <activity
             android:name=".LogOutPage"
             android:exported="false" />
         <activity

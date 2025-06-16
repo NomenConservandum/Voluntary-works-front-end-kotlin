@@ -18,6 +18,8 @@
     <string name="prompt_group">Group</string>
     <string name="prompt_points_user">Points earned</string>
     <string name="prompt_completed">Requests completed</string>
+    <string name="prompt_request_id">Request ID</string>
+    <string name="prompt_id_user">ID to add / remove</string>
 
     <string name="prompt_address">Address</string>
     <string name="prompt_date">Days to complete (number)</string>
@@ -65,6 +67,10 @@
     <!-- action strings -->
     <string name="change">Change</string>
     <string name="delete">Delete</string>
+    <string name="mark">Mark</string>
+    <string name="completed">Completed</string>
+    <string name="add_or_remove">Add / Remove</string>
+    <string name="send">Send</string>
     <string name="subscribe">Subscribe</string>
     <string name="unsubscribe">Unsubscribe</string>
     <string name="create">Create</string>

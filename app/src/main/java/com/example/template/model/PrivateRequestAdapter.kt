@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.template.R
 import com.example.template.functions.data_manipulation.globalDeleteRequestID
+import com.example.template.functions.data_manipulation.globalMarkingRequest
 
 class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
     RecyclerView.Adapter<PrivateRequestsAdapter.ViewHolder>() {
@@ -22,6 +23,7 @@ class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
         val deadline: TextView = view.findViewById(R.id.deadline)
         val description: TextView = view.findViewById(R.id.description)
         val deleteToggleButton: Button = view.findViewById(R.id.admin_delete_button)
+        val markAsCompletedButton: Button = view.findViewById(R.id.admin_mark_as_completed_button)
         val counter: TextView = view.findViewById(R.id.counter)
     }
 
@@ -51,9 +53,21 @@ class PrivateRequestsAdapter(private val dataSet: MutableList<PrivateRequest>) :
         viewHolder.description.text = dataSet[position].description
         viewHolder.counter.text = dataSet[position].respondedPeople.count().toString().plus('/').plus(dataSet[position].neededPeopleNumber.toString())
 
+        if (dataSet[position].isComplited) {
+            viewHolder.counter.setText(R.string.completed)
+            viewHolder.markAsCompletedButton.isEnabled = false
+        }
+
+
         viewHolder.deleteToggleButton.setOnClickListener {
             // send request via changing some global value and warning the page thus to change the layout
             globalDeleteRequestID.value = dataSet[position].id
+            globalMarkingRequest.value = PrivateRequest(0, 0, "", "", "", 0, mutableListOf<Int>(), 0, "", false, false, "")
+        }
+        viewHolder.markAsCompletedButton.setOnClickListener {
+            // send request via changing some global value and warning the page thus to change the layout
+            globalMarkingRequest.value = dataSet[position]
+            globalDeleteRequestID.value = 0
         }
     }
 

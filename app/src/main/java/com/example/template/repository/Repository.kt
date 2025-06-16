@@ -172,5 +172,12 @@ class Repository {
 			id
 		)
 	}
+	suspend fun markAsCompleted(requestId: Int, usersIds: List<Int>) : Response<Unit> {
+		return RetrofitInstance.api.markAsCompleted(
+			"Bearer ".plus(globalAccessToken.value ?: ""),
+			requestId,
+			usersIds
+		)
+	}
 }
 

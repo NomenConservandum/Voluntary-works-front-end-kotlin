@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MarkAsCompletedPage">
+
+    <ListView
+        android:id="@+id/people_list"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <Button
+        android:id="@+id/mark_as_completed_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="send"
+        android:text="@string/send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/people_list"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <EditText
+        android:id="@+id/id_to_add_or_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/prompt_id_user"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/mark_as_completed_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/people_list" />
+
+    <Button
+        android:id="@+id/add_remove_person_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addRemove"
+        android:text="@string/add_or_remove"
+        app:layout_constraintBottom_toTopOf="@+id/mark_as_completed_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_to_add_or_remove" />
+
+    <EditText
+        android:id="@+id/request_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/prompt_request_id"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/id_to_add_or_remove"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/people_list" />
+</androidx.constraintlayout.widget.ConstraintLayout>

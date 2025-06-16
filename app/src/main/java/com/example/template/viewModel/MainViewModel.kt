@@ -302,4 +302,17 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 				myErrorCodeResponse.value = response.code()
 		}
 	}
+
+	fun markAsCompleted(requestId: Int, usersIds: List<Int>) {
+		viewModelScope.launch {
+			val response = repository.markAsCompleted(requestId, usersIds)
+			if (response.code() == 204)
+				myString.value = "MARKED_AS_COMPLETED_SUCCESSFULLY"
+			else if (response.code() == 401) { // we gotta refresh it
+				refreshTokens()
+				markAsCompleted(requestId, usersIds)
+			} else
+				myErrorCodeResponse.value = response.code()
+		}
+	}
 }

@@ -52,6 +52,9 @@ interface API {
 	@DELETE("/api/AdminRequest/DeleteRequest")
 	suspend fun deleteRequest(@Header("Authorization") token: String, @Query("id") id: Int) : Response<Unit>
 
+	@PUT("/api/AdminRequest/MarkAsCompleted")
+	suspend fun markAsCompleted(@Header("Authorization") token: String, @Query("requestId") id: Int, @Body usersIds: List<Int>) : Response<Unit> // 204, 422, 404, 400
+
 	@GET("/api/AdminUser/GetUsers")
 	suspend fun getUsers(@Header("Authorization") token: String) : Response<MutableList<User>>
 
