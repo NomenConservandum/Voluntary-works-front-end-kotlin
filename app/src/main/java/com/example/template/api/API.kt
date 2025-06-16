@@ -10,6 +10,7 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Header
 import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface API {
@@ -46,31 +47,31 @@ interface API {
 	@GET("/api/AdminRequest/AdminFeed")
 	suspend fun getPrivateRequests(@Header("Authorization") token: String) : Response<MutableList<PrivateRequest>>
 
-	@POST("/api/AdminRequest/CreateRequest")
+	@POST("/api/AdminRequest/Create")
 	suspend fun createRequest(@Header("Authorization") token: String, @Body request: PrivateRequest) : Response<Unit> // returns either 403 or 200
 
-	@DELETE("/api/AdminRequest/DeleteRequest")
+	@DELETE("/api/AdminRequest/Delete")
 	suspend fun deleteRequest(@Header("Authorization") token: String, @Query("id") id: Int) : Response<Unit>
 
 	@PUT("/api/AdminRequest/MarkAsCompleted")
 	suspend fun markAsCompleted(@Header("Authorization") token: String, @Query("requestId") id: Int, @Body usersIds: List<Int>) : Response<Unit> // 204, 422, 404, 400
 
-	@GET("/api/AdminUser/GetUsers")
+	@GET("/api/AdminUser/Get")
 	suspend fun getUsers(@Header("Authorization") token: String) : Response<MutableList<User>>
 
-	@GET("/api/AdminUser/GetUserById")
-	suspend fun getUserById(@Header("Authorization") token: String, @Query("id") id: Int) : Response<User>
+	@GET("/api/AdminUser/Get/{id}")
+	suspend fun getUserById(@Header("Authorization") token: String, @Path("id") id: Int) : Response<User>
 
-	@GET("/api/AdminUser/GetUserByEmail")
-	suspend fun getUserByEmail(@Header("Authorization") token: String, @Query("email") email: String) : Response<User>
+	@GET("/api/AdminUser/Get/email/{email}")
+	suspend fun getUserByEmail(@Header("Authorization") token: String, @Path("email") email: String) : Response<User>
 
 	@POST("/api/AdminUser/Create")
 	suspend fun create(@Header("Authorization") token: String, @Body temp: User) : Response<JSONObject>
 
-	@POST("/api/AdminUser/Edit")
+	@POST("/api/AdminUser/Update")
 	suspend fun edit(@Header("Authorization") token: String, @Body user: User, @Query("oldEmail") email: String) : Response<CResponse>
 
-	@DELETE("/api/AdminUser/DeleteUser")
+	@DELETE("/api/AdminUser/Delete")
 	suspend fun delete(@Header("Authorization") token: String, @Query("id") id: Int) : Response<Unit>
 
 
